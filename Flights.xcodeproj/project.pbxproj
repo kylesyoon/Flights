@@ -8,20 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		512DD9EF1C6AE147001194F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512DD9EE1C6AE147001194F9 /* AppDelegate.swift */; };
-		512DD9F11C6AE147001194F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512DD9F01C6AE147001194F9 /* ViewController.swift */; };
+		512DD9F11C6AE147001194F9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512DD9F01C6AE147001194F9 /* SearchViewController.swift */; };
 		512DD9F41C6AE147001194F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 512DD9F21C6AE147001194F9 /* Main.storyboard */; };
 		512DD9F61C6AE147001194F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 512DD9F51C6AE147001194F9 /* Assets.xcassets */; };
 		512DD9F91C6AE147001194F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 512DD9F71C6AE147001194F9 /* LaunchScreen.storyboard */; };
+		51E930741C6D6FE1006DCD33 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E930731C6D6FE1006DCD33 /* Keys.swift */; };
+		51E930761C6D78D4006DCD33 /* FlightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E930751C6D78D4006DCD33 /* FlightsViewController.swift */; };
+		51E930781C6D797E006DCD33 /* Flight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E930771C6D797E006DCD33 /* Flight.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		512DD9EB1C6AE147001194F9 /* Flights.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flights.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		512DD9EE1C6AE147001194F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		512DD9F01C6AE147001194F9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		512DD9F01C6AE147001194F9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		512DD9F31C6AE147001194F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		512DD9F51C6AE147001194F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		512DD9F81C6AE147001194F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		512DD9FA1C6AE147001194F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51E930731C6D6FE1006DCD33 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
+		51E930751C6D78D4006DCD33 /* FlightsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightsViewController.swift; sourceTree = "<group>"; };
+		51E930771C6D797E006DCD33 /* Flight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flight.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,11 +61,14 @@
 			isa = PBXGroup;
 			children = (
 				512DD9EE1C6AE147001194F9 /* AppDelegate.swift */,
-				512DD9F01C6AE147001194F9 /* ViewController.swift */,
+				512DD9F01C6AE147001194F9 /* SearchViewController.swift */,
+				51E930751C6D78D4006DCD33 /* FlightsViewController.swift */,
+				51E930771C6D797E006DCD33 /* Flight.swift */,
 				512DD9F21C6AE147001194F9 /* Main.storyboard */,
 				512DD9F51C6AE147001194F9 /* Assets.xcassets */,
 				512DD9F71C6AE147001194F9 /* LaunchScreen.storyboard */,
 				512DD9FA1C6AE147001194F9 /* Info.plist */,
+				51E930731C6D6FE1006DCD33 /* Keys.swift */,
 			);
 			path = Flights;
 			sourceTree = "<group>";
@@ -135,7 +144,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				512DD9F11C6AE147001194F9 /* ViewController.swift in Sources */,
+				512DD9F11C6AE147001194F9 /* SearchViewController.swift in Sources */,
+				51E930761C6D78D4006DCD33 /* FlightsViewController.swift in Sources */,
+				51E930741C6D6FE1006DCD33 /* Keys.swift in Sources */,
+				51E930781C6D797E006DCD33 /* Flight.swift in Sources */,
 				512DD9EF1C6AE147001194F9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -286,6 +298,7 @@
 				512DD9FF1C6AE147001194F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
