@@ -18,6 +18,7 @@ class TripsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Trips"
         
         if let tripsData = self.tripsData?.dictionaryValue {
             self.trips = tripsData["trips"]!["tripOption"].arrayValue
