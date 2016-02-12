@@ -7,14 +7,15 @@
 //
 
 import Foundation
+import SwiftyJSON
 
-typealias TripAPISuccessCompletion = ([String: AnyObject]) -> Void
+typealias TripAPISuccessCompletion = (JSON) -> Void
 typealias TripAPIFailureCompletion = (ErrorType) -> Void
 
 struct TripAPI {
     
     static let baseURL = "https://www.googleapis.com/qpxExpress/v1/trips/search"
-    static let maxSolutions = 20
+    static let maxSolutions = 3
     
     static func searchTripsFromOrigin(origin: String,
         toDestination destination: String,
@@ -32,7 +33,11 @@ struct TripAPI {
                         destination: destination,
                         date: date,
                         passengers: passengers),
-                    success: success,
+                    success: {
+                        dict in
+                        let swiftyDict = JSON(dict)
+                        success(swiftyDict)
+                    },
                     failure: failure)
             }
     }

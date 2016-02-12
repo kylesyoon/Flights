@@ -7,17 +7,18 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class SearchViewController: UIViewController {
 
-    let baseURL = "https://www.googleapis.com/qpxExpress/v1/trips/search"
-    let maxSolutions = 20
     static let flightsViewControllerSegueIdentifier = "searchFlightsSegue"
     
     @IBOutlet var originTextField: UITextField!
     @IBOutlet var destinationTextField: UITextField!
     @IBOutlet var passengersTextField: UITextField!
     @IBOutlet var datePicker: UIDatePicker!
+    
+    var tripsData: JSON?
     
     override func viewDidLoad() {
         self.datePicker.minimumDate = NSDate()
@@ -35,6 +36,8 @@ class SearchViewController: UIViewController {
                         success: {
                             [weak self]
                             dict in
+                            print("\(dict)")
+                            self?.tripsData = dict
                             self?.performSegueWithIdentifier(SearchViewController.flightsViewControllerSegueIdentifier, sender: nil)
                         },
                         failure: {
@@ -50,6 +53,14 @@ class SearchViewController: UIViewController {
         }
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == SearchViewController.flightsViewControllerSegueIdentifier {
+            if let tripsVC = segue.destinationViewController as? TripsViewController {
+                tripsVC.tripsData = self.tripsData
+            }
+        }
+    }
+    
     private func showError() {
         let errorAlert = UIAlertController(title: "WTF", message: "Stop it!", preferredStyle: .Alert)
         errorAlert.addAction(UIAlertAction(title: "Sorry", style: .Default, handler: nil))
