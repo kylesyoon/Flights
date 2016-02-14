@@ -1,22 +1,16 @@
 PODS:
   - Alamofire (3.2.0)
-  - SwiftyJSON (2.3.2)
+  - Argo (2.2.0)
+  - Curry (1.4.0)
 
 DEPENDENCIES:
   - Alamofire
-  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
-
-EXTERNAL SOURCES:
-  SwiftyJSON:
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
-
-CHECKOUT OPTIONS:
-  SwiftyJSON:
-    :commit: 42bdb102d2624b143c07850ebdc1537d5b6579b6
-    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+  - Argo
+  - Curry
 
 SPEC CHECKSUMS:
   Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
-  SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
+  Argo: 4f52a32b4cd913c204e5a45f420b3fccad3e3f24
+  Curry: 294533187eedbf52db60a1e70c29b4f5c9f621c0
 
 COCOAPODS: 0.39.0

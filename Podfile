@@ -4,7 +4,8 @@ use_frameworks!
 target 'Flights' do
 
 pod 'Alamofire'
-pod 'SwiftyJSON', :git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+pod 'Curry'
+pod 'Argo'
 
 end
 

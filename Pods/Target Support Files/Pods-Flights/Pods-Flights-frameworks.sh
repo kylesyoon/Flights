@@ -85,9 +85,11 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Flights/Alamofire.framework"
-  install_framework "Pods-Flights/SwiftyJSON.framework"
+  install_framework "Pods-Flights/Argo.framework"
+  install_framework "Pods-Flights/Curry.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Flights/Alamofire.framework"
-  install_framework "Pods-Flights/SwiftyJSON.framework"
+  install_framework "Pods-Flights/Argo.framework"
+  install_framework "Pods-Flights/Curry.framework"
 fi
