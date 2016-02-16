@@ -1,16 +1,10 @@
 PODS:
   - Alamofire (3.2.0)
-  - Argo (2.2.0)
-  - Curry (1.4.0)
 
 DEPENDENCIES:
   - Alamofire
-  - Argo
-  - Curry
 
 SPEC CHECKSUMS:
   Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
-  Argo: 4f52a32b4cd913c204e5a45f420b3fccad3e3f24
-  Curry: 294533187eedbf52db60a1e70c29b4f5c9f621c0
 
 COCOAPODS: 0.39.0

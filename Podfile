@@ -4,8 +4,6 @@ use_frameworks!
 target 'Flights' do
 
 pod 'Alamofire'
-pod 'Curry'
-pod 'Argo'
 
 end
 
