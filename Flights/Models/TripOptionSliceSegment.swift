@@ -41,16 +41,24 @@ struct TripOptionSliceSegment {
 }
 
 extension TripOptionSliceSegment {
-    static func decode(jsonDict: NSDictionary) -> TripOptionSliceSegment? {
+    static func decode(jsonDict: [String: AnyObject]) -> TripOptionSliceSegment? {
         if let kind = jsonDict["kind"] as? String,
             duration = jsonDict["duration"] as? Int, 
             flight = jsonDict["flight"] as? [String: AnyObject], 
-            identifier = jsonDict["identifier"] as? String, 
+            identifier = jsonDict["id"] as? String, 
             cabin = jsonDict["cabin"] as? String, 
             bookingCode = jsonDict["bookingCode"] as? String, 
             bookingCodeCount = jsonDict["bookingCodeCount"] as? Int,
             marriedSegmentGroup = jsonDict["marriedSegmentGroup"] as? String,
-            leg = jsonDict["leg"] as? [TripOptionSliceSegmentLeg] {
+            leg = jsonDict["leg"] as? [[String: AnyObject]] {
+                var decodedLegs = [TripOptionSliceSegmentLeg]()
+                
+                for aLeg in leg {
+                    if let decodedLeg = TripOptionSliceSegmentLeg.decode(aLeg) {
+                        decodedLegs.append(decodedLeg)
+                    }
+                }
+                
                 if let decodedFlight = Flight.decode(flight) {
                     return TripOptionSliceSegment(kind: kind,
                         duration: duration,
@@ -60,7 +68,7 @@ extension TripOptionSliceSegment {
                         bookingCode: bookingCode,
                         bookingCodeCount: bookingCodeCount,
                         marriedSegmentGroup: marriedSegmentGroup,
-                        leg: leg)
+                        leg: decodedLegs)
                 }
 
         }

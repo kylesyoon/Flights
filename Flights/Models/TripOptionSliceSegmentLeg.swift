@@ -19,9 +19,10 @@ struct TripOptionSliceSegmentLeg {
     let originTerminal: String
     let destinationTerminal: String
     let duration: Int
-    let onTimePerformance: Int
+    let onTimePerformance: Int?
+    let operatingDisclosure: String?
     let mileage: Int
-    let meal: String
+    let meal: String?
     let secure: Bool
     
     init(kind: String,
@@ -33,11 +34,12 @@ struct TripOptionSliceSegmentLeg {
         destination: String, 
         originTerminal: String, 
         destinationTerminal: String, 
-        duration: Int, 
-        onTimePerformance: Int, 
+        duration: Int,
         mileage: Int,
-        meal: String,
-        secure: Bool) {
+        meal: String?,
+        secure: Bool,
+        onTimePerformance: Int?,
+        operatingDisclosure: String?) {
             self.kind = kind
             self.identifier = identifier
             self.aircraft = aircraft
@@ -49,6 +51,7 @@ struct TripOptionSliceSegmentLeg {
             self.destinationTerminal = destinationTerminal
             self.duration = duration
             self.onTimePerformance = onTimePerformance
+            self.operatingDisclosure = operatingDisclosure
             self.mileage = mileage
             self.meal = meal
             self.secure = secure
@@ -56,9 +59,9 @@ struct TripOptionSliceSegmentLeg {
 }
 
 extension TripOptionSliceSegmentLeg {
-    static func decode(jsonDict: NSDictionary) -> TripOptionSliceSegmentLeg? {
+    static func decode(jsonDict: [String: AnyObject]) -> TripOptionSliceSegmentLeg? {
         if let kind = jsonDict["kind"] as? String,
-            identifier = jsonDict["identifier"] as? String,
+            identifier = jsonDict["id"] as? String,
             aircraft = jsonDict["aircraft"] as? String,
             arrivalTime = jsonDict["arrivalTime"] as? String,
             departureTime = jsonDict["departureTime"] as? String,
@@ -67,10 +70,23 @@ extension TripOptionSliceSegmentLeg {
             originTerminal = jsonDict["originTerminal"] as? String,
             destinationTerminal = jsonDict["destinationTerminal"] as? String,
             duration = jsonDict["duration"] as? Int,
-            onTimePerformance = jsonDict["onTimePerformance"] as? Int,
             mileage = jsonDict["mileage"] as? Int,
-            meal = jsonDict["meal"] as? String,
-            secure = jsonDict["secure"] as? Bool {
+            secure = jsonDict["secure"] as? Int {
+                var meal: String?
+                if let unwrappedMeal = jsonDict["meal"] as? String {
+                    meal = unwrappedMeal
+                }
+                
+                var operatingDisclosure: String?
+                if let disclosure = jsonDict["operatingDisclosure"] as? String {
+                    operatingDisclosure = disclosure
+                }
+                
+                var onTimePerformance: Int?
+                if let performance = jsonDict["onTimePerformance"] as? Int {
+                    onTimePerformance = performance
+                }
+                
                 if let formattedArrivalTime = NSDateFormatter.decode(arrivalTime),
                     formattedDepartureTime = NSDateFormatter.decode(departureTime) {
                         return TripOptionSliceSegmentLeg(kind: kind,
@@ -83,10 +99,11 @@ extension TripOptionSliceSegmentLeg {
                             originTerminal: originTerminal,
                             destinationTerminal: destinationTerminal,
                             duration: duration,
-                            onTimePerformance: onTimePerformance,
                             mileage: mileage,
                             meal: meal,
-                            secure: secure)
+                            secure: Bool(secure),
+                            onTimePerformance: onTimePerformance,
+                            operatingDisclosure: operatingDisclosure)
                 }
                 
                 return nil

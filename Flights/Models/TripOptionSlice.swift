@@ -23,13 +23,21 @@ struct TripOptionSlice {
 }
 
 extension TripOptionSlice {
-    static func decode(jsonDict: NSDictionary) -> TripOptionSlice? {
+    static func decode(jsonDict: [String: AnyObject]) -> TripOptionSlice? {
         if let kind = jsonDict["kind"] as? String,
             duration = jsonDict["duration"] as? Int,
-            segment = jsonDict["segment"] as? [TripOptionSliceSegment]{
-            return TripOptionSlice(kind: kind,
-                duration: duration,
-                segment: segment)
+            segment = jsonDict["segment"] as? [[String : AnyObject]] {
+                var decodedSegments = [TripOptionSliceSegment]()
+                for aSegment in segment {
+                    if let decodedSegment = TripOptionSliceSegment.decode(aSegment) {
+                        decodedSegments.append(decodedSegment)
+                    }
+                    
+                }
+                
+                return TripOptionSlice(kind: kind,
+                    duration: duration,
+                    segment: decodedSegments)
         }
         
         return nil

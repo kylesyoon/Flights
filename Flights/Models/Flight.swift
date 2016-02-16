@@ -10,9 +10,9 @@ import Foundation
 
 struct Flight {
     let carrier: String
-    let number: Int
+    let number: String
     
-    init(number: Int, carrier: String) {
+    init(number: String, carrier: String) {
         self.number = number
         self.carrier = carrier
     }
@@ -20,8 +20,9 @@ struct Flight {
 
 extension Flight {
     static func decode(jsonDict: [String: AnyObject]) -> Flight? {
-        if let number = jsonDict["number"] as? Int, carrier = jsonDict["carrier"] as? String {
-            Flight(number: number, carrier: carrier)
+        if let number = jsonDict["number"] as? String,
+            carrier = jsonDict["carrier"] as? String {
+                return Flight(number: number, carrier: carrier)
         }
         
         return nil

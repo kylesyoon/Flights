@@ -32,14 +32,29 @@ extension TripOption {
     static func decode(jsonDict: [String: AnyObject]) -> TripOption? {
         if let kind = jsonDict["kind"] as? String,
             saleTotal = jsonDict["saleTotal"] as? String,
-            identifier = jsonDict["identifier"] as? String,
-            slice = jsonDict["slice"] as? [TripOptionSlice],
-            pricing = jsonDict["pricing"] as? [TripOptionPricing] {
+            identifier = jsonDict["id"] as? String,
+            slice = jsonDict["slice"] as? [[String: AnyObject]],
+            pricing = jsonDict["pricing"] as? [[String: AnyObject]] {
+                var decodedSlices = [TripOptionSlice]()
+                for aSlice in slice {
+                    if let decodedSlice = TripOptionSlice.decode(aSlice) {
+                        decodedSlices.append(decodedSlice)
+                    }
+                }
+                
+                var decodedPricings = [TripOptionPricing]()
+                
+                for aPricing in pricing {
+                    if let decodedPricing = TripOptionPricing.decode(aPricing) {
+                        decodedPricings.append(decodedPricing)
+                    }
+                }
+                
                 return TripOption(kind: kind,
                     saleTotal: saleTotal,
                     identifier: identifier,
-                    slice: slice,
-                    pricing: pricing)
+                    slice: decodedSlices,
+                    pricing: decodedPricings)
         }
         
         return nil

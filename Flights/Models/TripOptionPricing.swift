@@ -47,7 +47,7 @@ struct TripOptionPricing {
 }
 
 extension TripOptionPricing {
-    static func decode(jsonDict: NSDictionary) -> TripOptionPricing? {
+    static func decode(jsonDict: [String: AnyObject]) -> TripOptionPricing? {
         if let kind = jsonDict["kind"] as? String,
             fare = jsonDict["fare"] as? [AnyObject],
             segmentPricing = jsonDict["segmentPricing"] as? [AnyObject],

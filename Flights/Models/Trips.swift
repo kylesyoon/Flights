@@ -31,10 +31,10 @@ extension Trips {
             requestID = jsonDict["requestId"] as? String,
             data = jsonDict["data"] as? [String: AnyObject],
             tripOption = jsonDict ["tripOption"] as? [[String: AnyObject]] {
-                var tripOptions = [TripOption]()
-                for options in tripOption {
-                    if let decodedOption = TripOption.decode(options) {
-                        tripOptions.append(decodedOption)
+                var decodedTripOptions = [TripOption]()
+                for option in tripOption {
+                    if let decodedOption = TripOption.decode(option) {
+                        decodedTripOptions.append(decodedOption)
                     }
                 }
                 
@@ -42,7 +42,7 @@ extension Trips {
                     return Trips(kind: kind,
                         requestID: requestID,
                         data: data,
-                        tripOption: tripOptions)
+                        tripOption: decodedTripOptions)
                 }
         }
         

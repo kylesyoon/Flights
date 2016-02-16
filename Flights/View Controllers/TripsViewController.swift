@@ -17,7 +17,8 @@ class TripsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Trips"
+        let dateComponents = NSCalendar.currentCalendar().components([.Year, .Month, .Day], fromDate: (self.searchResults?.trips.tripOption[0].slice[0].segment[0].leg[0].departureTime)!)
+        self.navigationItem.title = "Trips on \(dateComponents.month)/\(dateComponents.day)/\(dateComponents.year)"
     }
     
 }
@@ -34,7 +35,9 @@ extension TripsViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let tripOption = self.searchResults?.trips.tripOption[indexPath.row] {
             let cell = tableView.dequeueReusableCellWithIdentifier("tripCell", forIndexPath: indexPath)
-            cell.textLabel?.text = tripOption.slice[0].segment[0].flight.carrier
+            cell.textLabel?.text = tripOption.slice[0].segment[0].flight.carrier + " " + tripOption.slice[0].segment[0].flight.number + " " + tripOption.pricing[0].saleTotal
+            let dateComponents = NSCalendar.currentCalendar().components([.Hour, .Minute], fromDate: tripOption.slice[0].segment[0].leg[0].departureTime)
+            cell.detailTextLabel?.text = "Departing \(dateComponents.hour):\(dateComponents.minute)"
             
             return cell
         }
