@@ -13,16 +13,11 @@ class TripsViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     
-    var tripsData: JSON?
-    var trips: [JSON]?
+    var searchResults: SearchResults?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Trips"
-        
-        if let tripsData = self.tripsData?.dictionaryValue {
-            self.trips = tripsData["trips"]!["tripOption"].arrayValue
-        }
     }
     
 }
@@ -30,19 +25,18 @@ class TripsViewController: UIViewController {
 extension TripsViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let trips = self.trips {
-            return trips.count
+        if let searchResults = self.searchResults {
+            return searchResults.trips.tripOption.count
         }
         return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let trip = self.trips?[indexPath.row].dictionaryValue {
-            let tripCell = tableView.dequeueReusableCellWithIdentifier("tripCell", forIndexPath: indexPath)
-            let saleTotal = trip["pricing"]![0]["saleTotal"].stringValue
-            tripCell.textLabel?.text = saleTotal
+        if let tripOption = self.searchResults?.trips.tripOption[indexPath.row] {
+            let cell = tableView.dequeueReusableCellWithIdentifier("tripCell", forIndexPath: indexPath)
+            cell.textLabel?.text = tripOption.slice[0].segment[0].flight.carrier
             
-            return tripCell
+            return cell
         }
         
         return UITableViewCell()

@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-typealias TripAPISuccessCompletion = (JSON) -> Void
+typealias TripAPISuccessCompletion = (SearchResults) -> Void
 typealias TripAPIFailureCompletion = (ErrorType) -> Void
 
 struct TripAPI {
@@ -35,8 +35,11 @@ struct TripAPI {
                         passengers: passengers),
                     success: {
                         dict in
-                        let swiftyDict = JSON(dict)
-                        success(swiftyDict)
+                        if let searchResults = SearchResults.decode(dict) {
+                            success(searchResults)
+                        } else {
+                            // Decoding error
+                        }
                     },
                     failure: failure)
             }

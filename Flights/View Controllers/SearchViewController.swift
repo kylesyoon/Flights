@@ -19,6 +19,7 @@ class SearchViewController: UIViewController {
     @IBOutlet var datePicker: UIDatePicker!
     
     var tripsData: JSON?
+    var searchResults: SearchResults?
     
     override func viewDidLoad() {
         self.datePicker.minimumDate = NSDate()
@@ -35,9 +36,8 @@ class SearchViewController: UIViewController {
                         withNumberOfPassengers: passengerCount,
                         success: {
                             [weak self]
-                            dict in
-                            print("\(dict)")
-                            self?.tripsData = dict
+                            searchResults in
+                            self?.searchResults = searchResults
                             self?.performSegueWithIdentifier(SearchViewController.flightsViewControllerSegueIdentifier, sender: nil)
                         },
                         failure: {
@@ -56,7 +56,7 @@ class SearchViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SearchViewController.flightsViewControllerSegueIdentifier {
             if let tripsVC = segue.destinationViewController as? TripsViewController {
-                tripsVC.tripsData = self.tripsData
+                tripsVC.searchResults = self.searchResults
             }
         }
     }
