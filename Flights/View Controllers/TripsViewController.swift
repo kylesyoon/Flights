@@ -14,11 +14,21 @@ class TripsViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     
     var searchResults: SearchResults?
+    var selectedTripOption: TripOption?
+    
+    let flightDetailSegueIdentifier =  "flightDetailSegue"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let dateComponents = NSCalendar.currentCalendar().components([.Year, .Month, .Day], fromDate: (self.searchResults?.trips.tripOption[0].slice[0].segment[0].leg[0].departureTime)!)
         self.navigationItem.title = "Trips on \(dateComponents.month)/\(dateComponents.day)/\(dateComponents.year)"
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == flightDetailSegueIdentifier {
+            let tripDetailVC = segue.destinationViewController as! TripDetailViewController
+            tripDetailVC.tripOption = self.selectedTripOption
+        }
     }
     
 }
@@ -48,5 +58,13 @@ extension TripsViewController: UITableViewDataSource {
 }
 
 extension TripsViewController: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if let tripOption = self.searchResults?.trips.tripOption[indexPath.row] {
+            self.selectedTripOption = tripOption
+            self.performSegueWithIdentifier(flightDetailSegueIdentifier, sender: nil)
+        }
+    }
     
 }

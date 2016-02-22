@@ -15,7 +15,7 @@ typealias TripAPIFailureCompletion = (ErrorType) -> Void
 struct TripAPI {
     
     static let baseURL = "https://www.googleapis.com/qpxExpress/v1/trips/search"
-    static let maxSolutions = 3
+    static let maxSolutions = 10
     
     static func searchTripsFromOrigin(origin: String,
         toDestination destination: String,
