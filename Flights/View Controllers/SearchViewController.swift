@@ -17,34 +17,41 @@ class SearchViewController: UIViewController {
     @IBOutlet var destinationTextField: UITextField!
     @IBOutlet var passengersTextField: UITextField!
     @IBOutlet var datePicker: UIDatePicker!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var roundTripSegmentedControl: UISegmentedControl!
     
     var tripsData: JSON?
     var searchResults: SearchResults?
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         self.datePicker.minimumDate = NSDate()
     }
     
     @IBAction func didTapSearch(sender: AnyObject) {
+        self.activityIndicator.startAnimating()
         if let origin = self.originTextField.text,
             destination = self.destinationTextField.text, 
             passengerCountString = self.passengersTextField.text {
                 if let passengerCount = Int(passengerCountString) {
-                    TripAPI.searchTripsFromOrigin(origin,
-                        toDestination: destination,
-                        onDate: self.datePicker.date,
-                        withNumberOfPassengers: passengerCount,
+                    let tripRequest = TripRequest(origin: origin,
+                        destination: destination,
+                        date: self.datePicker.date,
+                        adultPassengerCount: passengerCount)
+                    TripAPI.searchTripsWithRequest(tripRequest,
                         success: {
                             [weak self]
                             searchResults in
+                            self?.activityIndicator.stopAnimating()
                             self?.searchResults = searchResults
                             self?.performSegueWithIdentifier(SearchViewController.flightsViewControllerSegueIdentifier, sender: nil)
-                        },
-                        failure: {
+                        }, failure: {
                             [weak self]
                             error in
+                            self?.activityIndicator.stopAnimating()
                             self?.showError()
-                    } )
+                        })
+
                 } else {
                     self.showError()
                 }

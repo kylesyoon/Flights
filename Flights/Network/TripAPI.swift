@@ -17,6 +17,27 @@ struct TripAPI {
     static let baseURL = "https://www.googleapis.com/qpxExpress/v1/trips/search"
     static let maxSolutions = 10
     
+    static func searchTripsWithRequest(tripRequest: TripRequest,
+        success: TripAPISuccessCompletion,
+        failure: TripAPIFailureCompletion) {
+            let tripsURLComponents = NSURLComponents(string: baseURL)
+            let keyQueryItem = NSURLQueryItem(name: "key", value: Keys.APIKey)
+            tripsURLComponents?.queryItems = [keyQueryItem]
+            
+            if let tripsURL = tripsURLComponents?.URL {
+                APIUtility.SharedUtility.postJSON(tripsURL.absoluteString,
+                    parameters: self.searchParameters(tripRequest),
+                    success: {
+                        dict in
+                        if let searchResults = SearchResults.decode(dict) {
+                            success(searchResults)
+                        } else {
+                            // Decoding error
+                        }
+                    }, failure: failure)
+            }
+    }
+    
     static func searchTripsFromOrigin(origin: String,
         toDestination destination: String,
         onDate date: NSDate, 
@@ -43,6 +64,15 @@ struct TripAPI {
                     },
                     failure: failure)
             }
+    }
+    
+    private static func searchParameters(tripRequest: TripRequest) -> [String: AnyObject] {
+        let tripDateComponents = NSCalendar.currentCalendar().components([.Day, .Month, .Year], fromDate: tripRequest.date)
+        let dateString = "\(tripDateComponents.year)-\(tripDateComponents.month)-\(tripDateComponents.day)"
+        
+        let searchParameters = ["request": ["slice": [["origin": tripRequest.origin, "destination": tripRequest.destination, "date": dateString]], "passengers": ["adultCount": tripRequest.adultPassengerCount, "infantInLapCount": 0, "infantInSeatCount": 0, "childCount": 0, "seniorCount": 0], "solutions": self.maxSolutions, "refundable": false]]
+        
+        return searchParameters
     }
     
     private static func searchParameters(origin: String,

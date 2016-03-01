@@ -13,6 +13,8 @@
 		512DD9F61C6AE147001194F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 512DD9F51C6AE147001194F9 /* Assets.xcassets */; };
 		512DD9F91C6AE147001194F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 512DD9F71C6AE147001194F9 /* LaunchScreen.storyboard */; };
 		5194C6D71C7A868700826455 /* TripDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194C6D61C7A868700826455 /* TripDetailViewController.swift */; };
+		5194C6D91C7BDFDD00826455 /* TripRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194C6D81C7BDFDD00826455 /* TripRequest.swift */; };
+		5194C6DC1C80052300826455 /* Trips.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5194C6DA1C80052300826455 /* Trips.storyboard */; };
 		51F6E2931C711F000086CE99 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F6E2921C711F000086CE99 /* Keys.swift */; };
 		51F6E2951C7147C70086CE99 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F6E2941C7147C70086CE99 /* SearchResults.swift */; };
 		51F6E2971C714B360086CE99 /* Trips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F6E2961C714B360086CE99 /* Trips.swift */; };
@@ -41,6 +43,8 @@
 		512DD9F81C6AE147001194F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		512DD9FA1C6AE147001194F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Flights/Info.plist; sourceTree = "<group>"; };
 		5194C6D61C7A868700826455 /* TripDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailViewController.swift; sourceTree = "<group>"; };
+		5194C6D81C7BDFDD00826455 /* TripRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripRequest.swift; path = Flights/Models/TripRequest.swift; sourceTree = SOURCE_ROOT; };
+		5194C6DB1C80052300826455 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Flights/Base.lproj/Trips.storyboard; sourceTree = "<group>"; };
 		51F6E2921C711F000086CE99 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Keys.swift; path = Flights/Keys.swift; sourceTree = "<group>"; };
 		51F6E2941C7147C70086CE99 /* SearchResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 		51F6E2961C714B360086CE99 /* Trips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trips.swift; sourceTree = "<group>"; };
@@ -85,6 +89,7 @@
 			children = (
 				512DD9ED1C6AE147001194F9 /* Flights */,
 				512DD9F21C6AE147001194F9 /* Main.storyboard */,
+				5194C6DA1C80052300826455 /* Trips.storyboard */,
 				512DD9F71C6AE147001194F9 /* LaunchScreen.storyboard */,
 				512DD9FA1C6AE147001194F9 /* Info.plist */,
 				512DD9F51C6AE147001194F9 /* Assets.xcassets */,
@@ -121,6 +126,7 @@
 				5AA339071C6E52CB00DB4E76 /* HTTPSessionManager.swift */,
 				5AA3390A1C6E534D00DB4E76 /* APIUtility.swift */,
 				5AA339121C6E5C7100DB4E76 /* TripAPI.swift */,
+				5194C6D81C7BDFDD00826455 /* TripRequest.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -222,6 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				512DD9F91C6AE147001194F9 /* LaunchScreen.storyboard in Resources */,
+				5194C6DC1C80052300826455 /* Trips.storyboard in Resources */,
 				512DD9F61C6AE147001194F9 /* Assets.xcassets in Resources */,
 				512DD9F41C6AE147001194F9 /* Main.storyboard in Resources */,
 			);
@@ -292,6 +299,7 @@
 				5AA339081C6E52CB00DB4E76 /* HTTPSessionManager.swift in Sources */,
 				51F6E2971C714B360086CE99 /* Trips.swift in Sources */,
 				51F6E2931C711F000086CE99 /* Keys.swift in Sources */,
+				5194C6D91C7BDFDD00826455 /* TripRequest.swift in Sources */,
 				51F6E2A11C7152490086CE99 /* TripOptionSliceSegmentLeg.swift in Sources */,
 				5AA3390B1C6E534D00DB4E76 /* APIUtility.swift in Sources */,
 				51F6E2AB1C716F0A0086CE99 /* Flight.swift in Sources */,
@@ -322,6 +330,14 @@
 			);
 			name = LaunchScreen.storyboard;
 			path = Flights;
+			sourceTree = "<group>";
+		};
+		5194C6DA1C80052300826455 /* Trips.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5194C6DB1C80052300826455 /* Base */,
+			);
+			name = Trips.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
