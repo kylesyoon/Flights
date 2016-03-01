@@ -17,4 +17,9 @@ extension NSDateFormatter {
         return self.dateFormatter.dateFromString(dateString)
     }
     
+    static func presentableDate(fromDate date: NSDate) -> String {
+        self.dateFormatter.dateFormat = "MMM'.' dd',' yy"
+        return self.dateFormatter.stringFromDate(date)
+    }
+    
 }
