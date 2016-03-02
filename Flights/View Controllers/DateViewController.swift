@@ -9,7 +9,9 @@
 import UIKit
 
 protocol DateViewControllerDelegate {
+    
     func dateViewController(dateViewController: DateViewController, didTapDoneWithDate date: NSDate)
+    
 }
 
 class DateViewController: UIViewController {
@@ -21,7 +23,6 @@ class DateViewController: UIViewController {
     var delegate: DateViewControllerDelegate?
     
     @IBOutlet var datePicker: UIDatePicker!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()

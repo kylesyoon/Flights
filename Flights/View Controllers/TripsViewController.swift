@@ -6,6 +6,8 @@
 //  Copyright © 2016 Kyle Yoon. All rights reserved.
 //
 
+// TODO: Implement logic to grab departures, save returns until user taps a departure
+
 import UIKit
 import SwiftyJSON
 
@@ -13,15 +15,25 @@ class TripsViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     
+    var departureTripRequest: TripRequest?
     var searchResults: SearchResults?
+    var returnSearchResults: SearchResults?
     var selectedTripOption: TripOption?
+    var tripsDataSource: TripsDataSource?
+    var isRoundTrip: Bool = true
     
     let flightDetailSegueIdentifier =  "flightDetailSegue"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let dateComponents = NSCalendar.currentCalendar().components([.Year, .Month, .Day], fromDate: (self.searchResults?.trips.tripOption[0].slice[0].segment[0].leg[0].departureTime)!)
-        self.navigationItem.title = "Trips on \(dateComponents.month)/\(dateComponents.day)/\(dateComponents.year)"
+        self.tableView.registerNib(UINib(nibName: TripCell.cellIdentifier, bundle: nil),
+            forCellReuseIdentifier: TripCell.cellIdentifier)
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 134.0
+        if let searchResults = self.searchResults {
+            self.tripsDataSource = TripsDataSource(searchResults: searchResults)
+            self.tableView.reloadData()
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -35,24 +47,31 @@ class TripsViewController: UIViewController {
 
 extension TripsViewController: UITableViewDataSource {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let searchResults = self.searchResults {
-            return searchResults.trips.tripOption.count
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if let tripsDataSource = self.tripsDataSource {
+            return tripsDataSource.numberOfSections()
         }
+        
+        return 0
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let tripsDataSource = self.tripsDataSource {
+            return tripsDataSource.numberOfRowsForSection(section)
+        }
+        
         return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let tripOption = self.searchResults?.trips.tripOption[indexPath.row] {
-            let cell = tableView.dequeueReusableCellWithIdentifier("tripCell", forIndexPath: indexPath)
-            cell.textLabel?.text = tripOption.slice[0].segment[0].flight.carrier + " " + tripOption.slice[0].segment[0].flight.number + " " + tripOption.pricing[0].saleTotal
-            let dateComponents = NSCalendar.currentCalendar().components([.Hour, .Minute], fromDate: tripOption.slice[0].segment[0].leg[0].departureTime)
-            cell.detailTextLabel?.text = "Departing \(dateComponents.hour):\(dateComponents.minute)"
-            
+        if let cell = tableView.dequeueReusableCellWithIdentifier(TripCell.cellIdentifier, forIndexPath: indexPath) as? TripCell {
+            if let tripsDataSource = self.tripsDataSource {
+                cell.configure(tripsDataSource.tripOptionForIndexPath(indexPath))
+            }
             return cell
+        } else {
+            return UITableViewCell()
         }
-        
-        return UITableViewCell()
     }
     
 }
@@ -61,10 +80,8 @@ extension TripsViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if let tripOption = self.searchResults?.trips.tripOption[indexPath.row] {
-            self.selectedTripOption = tripOption
-            self.performSegueWithIdentifier(flightDetailSegueIdentifier, sender: nil)
-        }
+        self.tripsDataSource?.selectedTripOptionAtIndexPath(indexPath)
+        self.tableView.reloadData()
     }
     
 }

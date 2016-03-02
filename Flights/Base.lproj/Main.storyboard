@@ -27,6 +27,9 @@
                                             <segment title="Round trip"/>
                                             <segment title="One way"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="valueChangedForSegmentedControl:" destination="BYZ-38-t0r" eventType="valueChanged" id="gf1-D5-2rp"/>
+                                        </connections>
                                     </segmentedControl>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Origin" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g2h-Br-tjP">
                                         <rect key="frame" x="0.0" y="50" width="560" height="30"/>
@@ -46,7 +49,6 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aBh-cB-Jhz">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="Departure date"/>
                                                 <connections>
                                                     <segue destination="9Ho-go-Tc3" kind="popoverPresentation" identifier="departureDateSegueIdentifier" popoverAnchorView="aBh-cB-Jhz" id="x2o-cD-cnp">
@@ -57,7 +59,6 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YHg-zS-Din">
                                                 <rect key="frame" x="280" y="0.0" width="280" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <inset key="contentEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 <state key="normal" title="Return date"/>
                                                 <connections>
                                                     <segue destination="9Ho-go-Tc3" kind="popoverPresentation" identifier="returnDateSegueIdentifier" popoverAnchorView="YHg-zS-Din" id="ja7-u8-ufn">
@@ -67,41 +68,61 @@
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Adult Passengers" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="06k-sJ-bYA">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="eu2-dJ-wYj">
                                         <rect key="frame" x="0.0" y="200" width="560" height="30"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                    </textField>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adult Passengers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEn-Ei-vn5">
+                                                <rect key="frame" x="0.0" y="7" width="460" height="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iHs-Gb-6a5">
+                                                <rect key="frame" x="460" y="0.0" width="100" height="30"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="wAa-vh-Lxf"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="nzc-FD-UjX">
                                 <rect key="frame" x="282" y="281" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SQK-rM-iz9">
+                                <rect key="frame" x="0.0" y="550" width="600" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="aSb-wd-ipz"/>
+                                </constraints>
+                                <state key="normal" title="Search"/>
+                                <connections>
+                                    <action selector="didTapSearch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="B4U-Nh-RN0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="fLK-ko-gDF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="1Oz-1g-e6l"/>
                             <constraint firstItem="nzc-FD-UjX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2yr-Qk-IRq"/>
+                            <constraint firstItem="SQK-rM-iz9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ook-UG-9gU"/>
+                            <constraint firstAttribute="trailing" secondItem="SQK-rM-iz9" secondAttribute="trailing" id="PeJ-yM-GTY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fLK-ko-gDF" secondAttribute="trailing" id="W2C-yb-5Pq"/>
                             <constraint firstItem="fLK-ko-gDF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="h0P-WS-0ok"/>
                             <constraint firstItem="nzc-FD-UjX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="jgx-au-ZO5"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="SQK-rM-iz9" secondAttribute="bottom" id="koA-FG-kpR"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Flytster" id="lS7-hh-xTM">
-                        <barButtonItem key="rightBarButtonItem" title="Search" id="qwF-NQ-OQt">
-                            <connections>
-                                <action selector="didTapSearch:" destination="BYZ-38-t0r" id="kI3-av-bOn"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Flytster" id="lS7-hh-xTM"/>
                     <connections>
                         <outlet property="activityIndicator" destination="nzc-FD-UjX" id="zQf-WF-pZr"/>
+                        <outlet property="adultCountTextField" destination="iHs-Gb-6a5" id="7FQ-cs-XOo"/>
                         <outlet property="departureDateButton" destination="aBh-cB-Jhz" id="ty1-iU-67W"/>
                         <outlet property="destinationTextField" destination="066-8v-HAb" id="2dt-WI-0ph"/>
                         <outlet property="originTextField" destination="g2h-Br-tjP" id="MjI-uM-1Cu"/>
-                        <outlet property="passengersTextField" destination="06k-sJ-bYA" id="PgM-X0-DDW"/>
                         <outlet property="returnDateButton" destination="YHg-zS-Din" id="LCi-Hl-BnI"/>
                         <outlet property="roundTripSegmentedControl" destination="b9O-i1-uHk" id="Mvd-aj-feU"/>
                         <segue destination="nOk-Va-PxG" kind="show" identifier="searchFlightsSegue" id="GgZ-74-FSx"/>

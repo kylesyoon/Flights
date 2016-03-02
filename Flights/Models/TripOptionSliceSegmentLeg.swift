@@ -16,8 +16,8 @@ struct TripOptionSliceSegmentLeg {
     let departureTime: NSDate
     let origin: String
     let destination: String
-    let originTerminal: String
-    let destinationTerminal: String
+    let originTerminal: String?
+    let destinationTerminal: String?
     let duration: Int
     let onTimePerformance: Int?
     let operatingDisclosure: String?
@@ -32,8 +32,8 @@ struct TripOptionSliceSegmentLeg {
         departureTime: NSDate, 
         origin: String,
         destination: String, 
-        originTerminal: String, 
-        destinationTerminal: String, 
+        originTerminal: String?,
+        destinationTerminal: String?,
         duration: Int,
         mileage: Int,
         meal: String?,
@@ -67,8 +67,8 @@ extension TripOptionSliceSegmentLeg {
             departureTime = jsonDict["departureTime"] as? String,
             origin = jsonDict["origin"] as? String,
             destination = jsonDict["destination"] as? String,
-            originTerminal = jsonDict["originTerminal"] as? String,
-            destinationTerminal = jsonDict["destinationTerminal"] as? String,
+//            originTerminal = jsonDict["originTerminal"] as? String,
+//            destinationTerminal = jsonDict["destinationTerminal"] as? String,
             duration = jsonDict["duration"] as? Int,
             mileage = jsonDict["mileage"] as? Int,
             secure = jsonDict["secure"] as? Int {
@@ -85,6 +85,16 @@ extension TripOptionSliceSegmentLeg {
                 var onTimePerformance: Int?
                 if let performance = jsonDict["onTimePerformance"] as? Int {
                     onTimePerformance = performance
+                }
+                
+                var destinationTerminal: String?
+                if let unwrappedDestinationTerminal = jsonDict["destinationTerminal"] as? String {
+                    destinationTerminal = unwrappedDestinationTerminal
+                }
+                
+                var originTerminal: String?
+                if let unwrappedOriginTerminal = jsonDict["originTerminal"] as? String {
+                    originTerminal = unwrappedOriginTerminal
                 }
                 
                 if let formattedArrivalTime = NSDateFormatter.decode(arrivalTime),

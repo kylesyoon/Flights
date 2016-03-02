@@ -22,4 +22,11 @@ extension NSDateFormatter {
         return self.dateFormatter.stringFromDate(date)
     }
     
+    static func presentableTime(fromDate date: NSDate) -> String {
+        let usTwelveHourLocale = NSLocale(localeIdentifier: "en_US_POSIX")
+        self.dateFormatter.locale = usTwelveHourLocale // Investigate what this locale does
+        self.dateFormatter.dateFormat = "hh':'mm a"
+        return self.dateFormatter.stringFromDate(date)
+    }
+    
 }

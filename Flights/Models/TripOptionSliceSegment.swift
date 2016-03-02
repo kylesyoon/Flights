@@ -8,6 +8,8 @@
 
 import Foundation
 
+// TODO: Investigate multiple segments (layovers)
+
 struct TripOptionSliceSegment {
     let kind: String
     let duration: Int

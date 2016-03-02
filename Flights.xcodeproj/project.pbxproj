@@ -13,10 +13,15 @@
 		512DD9F61C6AE147001194F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 512DD9F51C6AE147001194F9 /* Assets.xcassets */; };
 		512DD9F91C6AE147001194F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 512DD9F71C6AE147001194F9 /* LaunchScreen.storyboard */; };
 		5194C6D71C7A868700826455 /* TripDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194C6D61C7A868700826455 /* TripDetailViewController.swift */; };
-		5194C6D91C7BDFDD00826455 /* TripRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194C6D81C7BDFDD00826455 /* TripRequest.swift */; };
 		5194C6DC1C80052300826455 /* Trips.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5194C6DA1C80052300826455 /* Trips.storyboard */; };
 		5194C6E21C8530DE00826455 /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194C6E11C8530DE00826455 /* DateViewController.swift */; };
 		5194C6E41C85395E00826455 /* TripManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194C6E31C85395E00826455 /* TripManager.swift */; };
+		5194C6E71C853F1400826455 /* TripsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194C6E61C853F1400826455 /* TripsDataSource.swift */; };
+		5194C6EA1C8541BE00826455 /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194C6E91C8541BE00826455 /* TripCell.swift */; };
+		5194C6EF1C85420E00826455 /* TripCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5194C6EE1C85420E00826455 /* TripCell.xib */; };
+		5194C6F41C869E5300826455 /* TripRequestPassengers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194C6F31C869E5300826455 /* TripRequestPassengers.swift */; };
+		5194C6F61C869E6E00826455 /* TripRequestSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194C6F51C869E6E00826455 /* TripRequestSlice.swift */; };
+		5194C6F81C869E9700826455 /* TripRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194C6F71C869E9700826455 /* TripRequest.swift */; };
 		51F6E2931C711F000086CE99 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F6E2921C711F000086CE99 /* Keys.swift */; };
 		51F6E2951C7147C70086CE99 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F6E2941C7147C70086CE99 /* SearchResults.swift */; };
 		51F6E2971C714B360086CE99 /* Trips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F6E2961C714B360086CE99 /* Trips.swift */; };
@@ -45,10 +50,15 @@
 		512DD9F81C6AE147001194F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		512DD9FA1C6AE147001194F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5194C6D61C7A868700826455 /* TripDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailViewController.swift; sourceTree = "<group>"; };
-		5194C6D81C7BDFDD00826455 /* TripRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripRequest.swift; path = Flights/Models/TripRequest.swift; sourceTree = SOURCE_ROOT; };
 		5194C6DB1C80052300826455 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Flights/Base.lproj/Trips.storyboard; sourceTree = "<group>"; };
 		5194C6E11C8530DE00826455 /* DateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
 		5194C6E31C85395E00826455 /* TripManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripManager.swift; path = Singletons/TripManager.swift; sourceTree = "<group>"; };
+		5194C6E61C853F1400826455 /* TripsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripsDataSource.swift; path = "Data Sources/TripsDataSource.swift"; sourceTree = "<group>"; };
+		5194C6E91C8541BE00826455 /* TripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripCell.swift; path = Views/TripCell.swift; sourceTree = "<group>"; };
+		5194C6EE1C85420E00826455 /* TripCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TripCell.xib; path = Views/TripCell.xib; sourceTree = "<group>"; };
+		5194C6F31C869E5300826455 /* TripRequestPassengers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripRequestPassengers.swift; path = Request/TripRequestPassengers.swift; sourceTree = "<group>"; };
+		5194C6F51C869E6E00826455 /* TripRequestSlice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripRequestSlice.swift; path = Request/TripRequestSlice.swift; sourceTree = "<group>"; };
+		5194C6F71C869E9700826455 /* TripRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripRequest.swift; path = Request/TripRequest.swift; sourceTree = "<group>"; };
 		51F6E2921C711F000086CE99 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Keys.swift; path = Flights/Keys.swift; sourceTree = "<group>"; };
 		51F6E2941C7147C70086CE99 /* SearchResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 		51F6E2961C714B360086CE99 /* Trips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trips.swift; sourceTree = "<group>"; };
@@ -112,7 +122,9 @@
 			children = (
 				512DD9EE1C6AE147001194F9 /* AppDelegate.swift */,
 				51F6E2A41C7158970086CE99 /* NSDateFormatter+Extension.swift */,
+				5194C6EB1C8541C100826455 /* Views */,
 				5AA339141C6E7A7500DB4E76 /* View Controllers */,
+				5194C6E81C853F2000826455 /* Data Sources */,
 				5AA339191C6E7AB100DB4E76 /* Models */,
 				5AA339091C6E52D000DB4E76 /* Network */,
 				5194C6E51C85396100826455 /* Singletons */,
@@ -133,13 +145,40 @@
 			name = Singletons;
 			sourceTree = "<group>";
 		};
+		5194C6E81C853F2000826455 /* Data Sources */ = {
+			isa = PBXGroup;
+			children = (
+				5194C6E61C853F1400826455 /* TripsDataSource.swift */,
+			);
+			name = "Data Sources";
+			sourceTree = "<group>";
+		};
+		5194C6EB1C8541C100826455 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5194C6E91C8541BE00826455 /* TripCell.swift */,
+				5194C6EE1C85420E00826455 /* TripCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		5194C6F21C869E3600826455 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				5194C6F71C869E9700826455 /* TripRequest.swift */,
+				5194C6F31C869E5300826455 /* TripRequestPassengers.swift */,
+				5194C6F51C869E6E00826455 /* TripRequestSlice.swift */,
+			);
+			name = Request;
+			sourceTree = "<group>";
+		};
 		5AA339091C6E52D000DB4E76 /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				5AA339071C6E52CB00DB4E76 /* HTTPSessionManager.swift */,
 				5AA3390A1C6E534D00DB4E76 /* APIUtility.swift */,
 				5AA339121C6E5C7100DB4E76 /* TripAPI.swift */,
-				5194C6D81C7BDFDD00826455 /* TripRequest.swift */,
+				5194C6F21C869E3600826455 /* Request */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -241,6 +280,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5194C6EF1C85420E00826455 /* TripCell.xib in Resources */,
 				512DD9F91C6AE147001194F9 /* LaunchScreen.storyboard in Resources */,
 				5194C6DC1C80052300826455 /* Trips.storyboard in Resources */,
 				512DD9F61C6AE147001194F9 /* Assets.xcassets in Resources */,
@@ -304,18 +344,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				5194C6E21C8530DE00826455 /* DateViewController.swift in Sources */,
+				5194C6F81C869E9700826455 /* TripRequest.swift in Sources */,
+				5194C6F61C869E6E00826455 /* TripRequestSlice.swift in Sources */,
 				5AA339171C6E7A9C00DB4E76 /* TripsViewController.swift in Sources */,
 				5AA339131C6E5C7100DB4E76 /* TripAPI.swift in Sources */,
+				5194C6EA1C8541BE00826455 /* TripCell.swift in Sources */,
 				51F6E2A71C715C5A0086CE99 /* TripOptionSliceSegment.swift in Sources */,
 				51F6E2A31C71578F0086CE99 /* TripOptionPricing.swift in Sources */,
 				5AA339181C6E7A9C00DB4E76 /* SearchViewController.swift in Sources */,
 				51F6E2951C7147C70086CE99 /* SearchResults.swift in Sources */,
+				5194C6E71C853F1400826455 /* TripsDataSource.swift in Sources */,
 				5194C6D71C7A868700826455 /* TripDetailViewController.swift in Sources */,
 				5194C6E41C85395E00826455 /* TripManager.swift in Sources */,
 				5AA339081C6E52CB00DB4E76 /* HTTPSessionManager.swift in Sources */,
 				51F6E2971C714B360086CE99 /* Trips.swift in Sources */,
 				51F6E2931C711F000086CE99 /* Keys.swift in Sources */,
-				5194C6D91C7BDFDD00826455 /* TripRequest.swift in Sources */,
 				51F6E2A11C7152490086CE99 /* TripOptionSliceSegmentLeg.swift in Sources */,
 				5AA3390B1C6E534D00DB4E76 /* APIUtility.swift in Sources */,
 				51F6E2AB1C716F0A0086CE99 /* Flight.swift in Sources */,
@@ -323,6 +366,7 @@
 				51F6E29B1C714F7A0086CE99 /* TripOption.swift in Sources */,
 				51F6E2A51C7158980086CE99 /* NSDateFormatter+Extension.swift in Sources */,
 				51F6E2991C714E120086CE99 /* TripsData.swift in Sources */,
+				5194C6F41C869E5300826455 /* TripRequestPassengers.swift in Sources */,
 				512DD9EF1C6AE147001194F9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

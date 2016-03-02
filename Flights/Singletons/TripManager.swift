@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+class TripManager {
+    
+    static let sharedManager = TripManager()
+    
+    var roundTrip: Bool?
+    var departureDate: NSDate?
+    var returnDate: NSDate?
+    var adultCount: Int?
+    var departureTripOption: TripOption?
+    
+}
