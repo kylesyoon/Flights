@@ -36,12 +36,20 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="didBeingEditing:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="xjx-Ff-9NH"/>
+                                            <action selector="didChangeEditing:" destination="BYZ-38-t0r" eventType="editingChanged" id="J0g-RX-7hV"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Destination" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="066-8v-HAb">
                                         <rect key="frame" x="0.0" y="100" width="560" height="30"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="didBeingEditing:" destination="BYZ-38-t0r" eventType="editingDidBegin" id="H5C-5D-zKg"/>
+                                            <action selector="didChangeEditing:" destination="BYZ-38-t0r" eventType="editingChanged" id="Hje-hw-abR"/>
+                                        </connections>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="J37-V8-MlD">
                                         <rect key="frame" x="0.0" y="150" width="560" height="30"/>
@@ -74,7 +82,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adult Passengers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEn-Ei-vn5">
                                                 <rect key="frame" x="0.0" y="7" width="460" height="17"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iHs-Gb-6a5">
@@ -105,6 +113,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="fLK-ko-gDF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="1Oz-1g-e6l"/>
                             <constraint firstItem="nzc-FD-UjX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2yr-Qk-IRq"/>
@@ -115,6 +124,9 @@
                             <constraint firstItem="nzc-FD-UjX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="jgx-au-ZO5"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="SQK-rM-iz9" secondAttribute="bottom" id="koA-FG-kpR"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Sn6-0v-ISv" appends="YES" id="nJK-n0-17w"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Flytster" id="lS7-hh-xTM"/>
                     <connections>
@@ -125,10 +137,17 @@
                         <outlet property="originTextField" destination="g2h-Br-tjP" id="MjI-uM-1Cu"/>
                         <outlet property="returnDateButton" destination="YHg-zS-Din" id="LCi-Hl-BnI"/>
                         <outlet property="roundTripSegmentedControl" destination="b9O-i1-uHk" id="Mvd-aj-feU"/>
+                        <outlet property="searchStackView" destination="fLK-ko-gDF" id="TzC-BT-vaY"/>
                         <segue destination="nOk-Va-PxG" kind="show" identifier="searchFlightsSegue" id="GgZ-74-FSx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer cancelsTouchesInView="NO" id="Sn6-0v-ISv">
+                    <connections>
+                        <action selector="recognizedTapGesture:" destination="BYZ-38-t0r" id="XdL-hg-WXx"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="Bwa-4h-8Ye"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1063" y="479"/>
         </scene>

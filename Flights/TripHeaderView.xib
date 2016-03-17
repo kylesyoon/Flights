@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TripHeaderView" customModule="Flights" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xla-R4-xMv">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vda-Ca-WsA">
+                            <rect key="frame" x="8" y="0.0" width="584" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="08z-Vf-koj"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Vda-Ca-WsA" secondAttribute="bottom" id="Fxp-yx-h3b"/>
+                        <constraint firstAttribute="trailing" secondItem="Vda-Ca-WsA" secondAttribute="trailing" constant="8" id="Hez-EW-2Sq"/>
+                        <constraint firstItem="Vda-Ca-WsA" firstAttribute="top" secondItem="Xla-R4-xMv" secondAttribute="top" id="b2p-GT-Zn4"/>
+                        <constraint firstItem="Vda-Ca-WsA" firstAttribute="leading" secondItem="Xla-R4-xMv" secondAttribute="leading" constant="8" id="mzC-LD-GdI"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Xla-R4-xMv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7Ri-Md-uy5"/>
+                <constraint firstItem="Xla-R4-xMv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Cf9-Xk-zN7"/>
+                <constraint firstAttribute="trailing" secondItem="Xla-R4-xMv" secondAttribute="trailing" id="Ogt-wS-cfZ"/>
+                <constraint firstAttribute="bottom" secondItem="Xla-R4-xMv" secondAttribute="bottom" id="v4X-ao-Ou4"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="sectionTitleLabel" destination="Vda-Ca-WsA" id="zGg-c9-tlk"/>
+            </connections>
+        </view>
+    </objects>
+</document>

@@ -19,28 +19,80 @@ class TripCell: UITableViewCell {
     @IBOutlet var detailsLabel: UILabel!
     @IBOutlet var layoverLabel: UILabel!
     
-    func configure(tripOption: TripOption) {
-        let saleTotal = tripOption.pricing[0].saleTotal
+    func configure(tripCellData: TripCellData) {
+        let tripOption = tripCellData.tripOption
+        let sliceIndex = tripCellData.sliceIndex
+        self.configurePrice(tripOption)
+        let slice = tripOption.slice[sliceIndex]
+        self.configureFlightTimes(slice)
+        self.configureCarrierNames(tripCellData.airlineNames)
+        self.configureLayovers(slice)
+    }
+
+    private func configurePrice(tripOption: TripOption) {
+        //TODO: Get the right price
+        let saleTotal = tripOption.pricing[0].saleTotal // When do we have more than 1 pricing?
         if saleTotal.hasPrefix("USD") {
             self.priceLabel.text = "$" + (saleTotal as NSString).substringFromIndex(3)
         }
-        let leg = tripOption.slice[0].segment[0].leg[0] // TODO: Investigate why we get 0 legs?
-        let departureTime = leg.departureTime
-        let arrivalTime = leg.arrivalTime
-        let departureString = NSDateFormatter.presentableTime(fromDate: departureTime)
-        let arrivalString = NSDateFormatter.presentableTime(fromDate: arrivalTime)
-        self.flightTimeLabel.text = departureString + "-" + arrivalString
-        // TODO: Parse TripData, check all segments, reference TripData for carrier full name
-        // Carrier name for code function
-        self.airlineLabel.text = tripOption.slice[0].segment[0].flight.carrier
-        
-        let durationComponents = NSCalendar.currentCalendar().components([.Day, .Hour, .Minute],
-            fromDate: departureTime,
-            toDate: arrivalTime,
-            options: [])
-        let duration = "\(durationComponents.hour)h:\(durationComponents.minute)m"
-        self.detailsLabel.text = duration + " " + "\(leg.origin)" + "-" + "\(leg.destination)"
-        self.layoverLabel.text = "How do I know layovers?"
+    }
+    
+    private func configureFlightTimes(slice: TripOptionSlice) {
+        if let firstLeg = slice.segment.first?.leg.first, lastLeg = slice.segment.last?.leg.last {
+            let departureTime = firstLeg.departureTime
+            let arrivalTime = lastLeg.arrivalTime
+            let departureString = NSDateFormatter.presentableTime(fromDate: departureTime)
+            let arrivalString = NSDateFormatter.presentableTime(fromDate: arrivalTime)
+            self.flightTimeLabel.text = departureString + "-" + arrivalString
+            let durationComponents = NSCalendar.currentCalendar().components([.Day, .Hour, .Minute],
+                fromDate: departureTime,
+                toDate: arrivalTime,
+                options: [])
+            let duration = "\(durationComponents.hour)h:\(durationComponents.minute)m"
+            self.detailsLabel.text = duration + " " + "\(firstLeg.origin)" + "-" + "\(lastLeg.destination)"
+        }
+    }
+    
+    private func configureCarrierNames(names: [String]) {
+        self.airlineLabel.text = ""
+        for airlineName in names {
+            self.airlineLabel.text! += airlineName
+            if names.last != airlineName {
+                self.airlineLabel.text! += ", "
+            }
+        }
+    }
+    
+    private func configureLayovers(slice: TripOptionSlice) {
+        // TODO: The integer conversion for connection duration is messed up somewhere. Investigate.
+        var connectionDurationsAndAirports = [(Int, String)]()
+        for segment in slice.segment {
+            for leg in segment.leg {
+                if let connectionDuration = leg.connectionDuration {
+                    connectionDurationsAndAirports.append((connectionDuration, leg.destination))
+                }
+            }
+            if let connectionDuration = segment.connectionDuration {
+                if let lastLegOfSegment = segment.leg.last {
+                    connectionDurationsAndAirports.append((connectionDuration, lastLegOfSegment.destination))
+                }
+            }
+        }
+        let stopCount = connectionDurationsAndAirports.count
+        if stopCount > 0 {
+            self.layoverLabel.hidden = false
+            self.layoverLabel.text = "\(stopCount) \(stopCount > 1 ? "stops" : "stop")" + " "
+            for connectionDurationAndAirport in connectionDurationsAndAirports {
+                var layoverDetails = ""
+                if connectionDurationAndAirport.0 / 60 > 1 {
+                    layoverDetails = layoverDetails + "\(Int(connectionDurationAndAirport.0 / 60))h" + " "
+                }
+                layoverDetails = layoverDetails + "\(connectionDurationAndAirport.0)m" + " in " + connectionDurationAndAirport.1
+                self.layoverLabel.text = self.layoverLabel.text! + layoverDetails
+            }
+        } else {
+            self.layoverLabel.hidden = true
+        }
     }
     
 }

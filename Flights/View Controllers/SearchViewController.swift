@@ -14,6 +14,7 @@ class SearchViewController: UIViewController {
 
     static let flightsViewControllerSegueIdentifier = "searchFlightsSegue"
     
+    @IBOutlet var searchStackView: UIStackView!
     @IBOutlet var originTextField: UITextField!
     @IBOutlet var destinationTextField: UITextField!
     @IBOutlet var adultCountTextField: UITextField!
@@ -22,44 +23,35 @@ class SearchViewController: UIViewController {
     @IBOutlet var departureDateButton: UIButton!
     @IBOutlet var returnDateButton: UIButton!
     
-    var tripsData: JSON?
     var searchResults: SearchResults?
     var departureDate: NSDate?
     var returnDate: NSDate?
-    var departureTripRequest: TripRequest?
+    var tripRequest: TripRequest?
+    //Typeahead
+    var editingTextField: UITextField?
+    var typeaheadTableView: UITableView?
+    var searchTerm: String = ""
+    var typeaheadDataSource = TypeaheadDataSource()
     
-    @IBAction func didTapSearch(sender: AnyObject) {
-        self.activityIndicator.startAnimating()
-        if let tripRequest = self.tripRequestFromUserInput() {
-            self.departureTripRequest = tripRequest
-            TripAPI.searchTripsWithRequest(tripRequest,
-                success: {
-                    [weak self]
-                    searchResults in
-                    self?.activityIndicator.stopAnimating()
-                    self?.searchResults = searchResults
-                    self?.performSegueWithIdentifier(SearchViewController.flightsViewControllerSegueIdentifier, sender: nil)
-                }, failure: {
-                    [weak self]
-                    error in
-                    self?.activityIndicator.stopAnimating()
-                    self?.showError()
-                })
-        } else {
-            self.showError()
-        }
+    var airports: [[String: AnyObject]]?
+    var typeaheadResults: [String: [String]]?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "keyboardWillShow:",
+            name: UIKeyboardWillShowNotification,
+            object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self,
+            selector: "keyboardWillHide:",
+            name: UIKeyboardWillHideNotification,
+            object: nil)
     }
-    
-    @IBAction func valueChangedForSegmentedControl(control: UISegmentedControl) {
-            self.returnDateButton.hidden = control.selectedSegmentIndex != 0
-    }
-    
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == SearchViewController.flightsViewControllerSegueIdentifier {
             if let tripsVC = segue.destinationViewController as? TripsViewController {
                 tripsVC.searchResults = self.searchResults
-                tripsVC.departureTripRequest = self.departureTripRequest // TODO: Pass this only when we have round trip! Should we query before we go to next screen?
                 tripsVC.isRoundTrip = self.roundTripSegmentedControl.selectedSegmentIndex == 0 // For round trip
             }
         } else if segue.identifier == DateViewController.departureDateSegueIdentifier ||
@@ -82,14 +74,21 @@ class SearchViewController: UIViewController {
         }
     }
     
+    /**
+     Making the request to throw into the network call
+     
+     - returns: The request with user input
+     */
     private func tripRequestFromUserInput() -> TripRequest? {
         if let origin = self.originTextField.text,
             destination = self.destinationTextField.text,
             adultCountString = self.adultCountTextField.text,
             departureDate = self.departureDate {
                 var slices = [TripRequestSlice]()
-                let departureTripSlice = TripRequestSlice(origin: origin,
-                    destination: destination,
+                let originCode = origin.substringToIndex(origin.startIndex.advancedBy(3))
+                let destinationCode = destination.substringToIndex(destination.startIndex.advancedBy(3))
+                let departureTripSlice = TripRequestSlice(origin: originCode,
+                    destination: destinationCode,
                     date: departureDate,
                     maxStops: nil,
                     maxConnectionDuration: nil,
@@ -99,11 +98,11 @@ class SearchViewController: UIViewController {
                     alliance: nil,
                     prohibitedCarrier: nil)
                 slices.append(departureTripSlice)
-                
+                // If it's a round trip, add another slice for return
                 if self.roundTripSegmentedControl.selectedSegmentIndex == 0 {
                     if let returnDate = self.returnDate {
-                        let returnTripSlice = TripRequestSlice(origin: destination,
-                            destination: origin,
+                        let returnTripSlice = TripRequestSlice(origin: destinationCode,
+                            destination: originCode,
                             date: returnDate,
                             maxStops: nil,
                             maxConnectionDuration: nil,
@@ -115,9 +114,9 @@ class SearchViewController: UIViewController {
                         slices.append(returnTripSlice)
                     }
                 }
-                
+                // TODO: Add fields for other types of passengers
                 if let adultCount = Int(adultCountString) {
-                    let requestPassengers = TripRequestPassengers(adultCount: adultCount, // Force trusting that it will be in Int. Investigate later.
+                    let requestPassengers = TripRequestPassengers(adultCount: adultCount,
                         childCount: nil,
                         infantInLapCount: nil,
                         infantInSeatCount: nil,
@@ -137,16 +136,109 @@ class SearchViewController: UIViewController {
         return nil
     }
     
-    private func showError() {
-        let errorAlert = UIAlertController(title: "Error",
-            message: "Sorry, try again I guess?", 
-            preferredStyle: .Alert)
-        errorAlert.addAction(UIAlertAction(title: "Okay",
-            style: .Default,
-            handler: nil))
-        self.presentViewController(errorAlert, 
-            animated: true, 
-            completion: nil)
+    /**
+     Getting the keyboard height to draw a typeahead tableview above the keyboard
+     
+     - parameter notification: The notification with the keyboard rect
+     */
+    func keyboardWillShow(notification: NSNotification) {
+        // Clear typeahead results because this gets called when tapping another textfield
+        self.typeaheadDataSource.typeaheadResults.removeAll()
+        self.typeaheadTableView?.reloadData()
+        // Get the keyboard rect
+        let userInfo = notification.userInfo!
+        let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue
+        let keyboardRect = keyboardFrame.CGRectValue()
+        if let typeaheadTableView = self.typeaheadTableView {
+            // when tapping textfield to textfield
+            if !typeaheadTableView.hidden {
+                // get out since it's already there
+                return
+                // when showing a hidden tableview
+            } else {
+                typeaheadTableView.hidden = false
+            }
+        } else {
+            // when its first time
+            let typeaheadTableView = UITableView(frame: CGRectMake(0, self.view.frame.size.height, self.view.frame.width, self.view.frame.height - keyboardRect.height))
+            typeaheadTableView.backgroundColor = UIColor.whiteColor()
+            typeaheadTableView.delegate = self
+            typeaheadTableView.dataSource = self
+            self.typeaheadTableView = typeaheadTableView
+            self.view.addSubview(typeaheadTableView)
+        }
+        // move the table view up
+        if let typeaheadTableView = self.typeaheadTableView {
+            let convertedDestinationFieldOrigin = self.view.convertPoint(self.destinationTextField.frame.origin, fromView: self.searchStackView)
+            let tableViewOrigin = CGPointMake(0, convertedDestinationFieldOrigin.y + self.destinationTextField.frame.size.height + 20)
+            UIView.animateWithDuration(0.2,
+                animations: {
+                    typeaheadTableView.frame = CGRectMake(tableViewOrigin.x, tableViewOrigin.y, typeaheadTableView.frame.size.width, typeaheadTableView.frame.size.height)
+            })
+        }
+        
+    }
+    
+    /**
+     When keyboard hides, remote the typeahead tableview
+     
+     - parameter notification: The notification that the keyboard is hiding
+     */
+    func keyboardWillHide(notification: NSNotification) {
+        if let typeaheadTableView = self.typeaheadTableView {
+            typeaheadTableView.hidden = true
+            typeaheadTableView.frame = CGRectMake(0, self.view.frame.size.height, typeaheadTableView.frame.size.width, typeaheadTableView.frame.size.height)
+        }
+
+        self.typeaheadDataSource.typeaheadResults.removeAll()
+    }
+    
+    @IBAction func didTapSearch(sender: AnyObject) {
+        if let tripRequest = self.tripRequestFromUserInput() {
+            self.tripRequest = tripRequest
+            self.activityIndicator.startAnimating()
+            TripAPI.searchTripsWithRequest(tripRequest,
+                success: {
+                    [weak self]
+                    searchResults in
+                    self?.activityIndicator.stopAnimating()
+                    self?.searchResults = searchResults
+                    self?.performSegueWithIdentifier(SearchViewController.flightsViewControllerSegueIdentifier, sender: nil)
+                }, failure: {
+                    [weak self]
+                    error in
+                    print("\(error)")
+                    self?.activityIndicator.stopAnimating()
+                    // TODO: Error handling
+                })
+        } else {
+            // TODO: Error handling
+        }
+    }
+    
+    @IBAction func valueChangedForSegmentedControl(control: UISegmentedControl) {
+        self.returnDateButton.hidden = control.selectedSegmentIndex != 0
+    }
+    
+    @IBAction func didBeingEditing(textField: UITextField) {
+        self.editingTextField = textField
+    }
+    
+    @IBAction func didChangeEditing(textField: UITextField) {
+        if let text = textField.text {
+            if text.characters.count >= 2 {
+                self.typeaheadDataSource.searchAirportsWithTerm(text)
+                self.typeaheadTableView?.reloadData()
+            }
+        }
+    }
+
+    @IBAction func recognizedTapGesture(gestureRecognizer: UITapGestureRecognizer) {
+        if gestureRecognizer.state == .Ended {
+            if let textField = self.editingTextField {
+                textField.resignFirstResponder()
+            }
+        }
     }
     
 }
@@ -182,3 +274,47 @@ extension SearchViewController: DateViewControllerDelegate {
     
 }
 
+extension SearchViewController: UITableViewDataSource {
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.typeaheadDataSource.numberOfRowsForSection(section)
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let typeAheadCell = UITableViewCell(style: .Default, reuseIdentifier: "typeAheadCell")
+        // TODO: Make custom cell to display bolded text
+        typeAheadCell.textLabel?.text = self.typeaheadDataSource.stringForIndexPath(indexPath)
+        return typeAheadCell
+    }
+    
+}
+
+extension SearchViewController: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)
+        if let editingTextField = self.editingTextField {
+            editingTextField.text = selectedCell?.textLabel?.text
+            editingTextField.resignFirstResponder()
+        }
+        
+    }
+    
+}
+
+extension SearchViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        if let view = touch.view, typeaheadTableView = self.typeaheadTableView {
+            if view.isDescendantOfView(typeaheadTableView) || view.isDescendantOfView(self.roundTripSegmentedControl) {
+                return false
+            }
+            
+            return true
+        }
+        
+        return true
+    }
+    
+}

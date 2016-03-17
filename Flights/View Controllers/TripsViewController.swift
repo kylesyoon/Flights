@@ -14,20 +14,18 @@ import SwiftyJSON
 class TripsViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
-    
-    var departureTripRequest: TripRequest?
     var searchResults: SearchResults?
-    var returnSearchResults: SearchResults?
     var selectedTripOption: TripOption?
     var tripsDataSource: TripsDataSource?
     var isRoundTrip: Bool = true
-    
     let flightDetailSegueIdentifier =  "flightDetailSegue"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.registerNib(UINib(nibName: TripCell.cellIdentifier, bundle: nil),
             forCellReuseIdentifier: TripCell.cellIdentifier)
+        self.tableView.registerNib(UINib(nibName: TripHeaderView.cellIdentifier, bundle: nil),
+            forHeaderFooterViewReuseIdentifier: TripHeaderView.cellIdentifier)
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 134.0
         if let searchResults = self.searchResults {
@@ -66,12 +64,49 @@ extension TripsViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier(TripCell.cellIdentifier, forIndexPath: indexPath) as? TripCell {
             if let tripsDataSource = self.tripsDataSource {
-                cell.configure(tripsDataSource.tripOptionForIndexPath(indexPath))
+                cell.configure(tripsDataSource.tripCellDataForIndexPath(indexPath))
             }
+            
             return cell
-        } else {
-            return UITableViewCell()
         }
+        
+        return UITableViewCell()
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if self.tableView.numberOfSections == 2 {
+            if let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(TripHeaderView.cellIdentifier) as? TripHeaderView {
+                switch section {
+                case 1:
+                    headerView.sectionTitleLabel.text = "Choose your return flight"
+                    return headerView
+                case 0:
+                    fallthrough
+                default:
+                    headerView.sectionTitleLabel.text = "Selected departure flight"
+                    return headerView
+                }
+            }
+
+            return nil
+        }
+        
+        return nil
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if self.tableView.numberOfSections == 2 {
+            switch section {
+            case 1:
+                fallthrough
+            case 0:
+                fallthrough
+            default:
+                return 100.0
+            }
+        }
+        
+        return 0
     }
     
 }
@@ -80,8 +115,11 @@ extension TripsViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        self.tripsDataSource?.selectedTripOptionAtIndexPath(indexPath)
-        self.tableView.reloadData()
+        if let dataSource = self.tripsDataSource {
+            dataSource.isSelectingDepature = false
+            dataSource.selectedTripOptionAtIndexPath(indexPath)
+            self.tableView.reloadData()
+        }
     }
     
 }

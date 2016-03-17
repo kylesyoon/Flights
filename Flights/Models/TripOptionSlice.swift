@@ -32,7 +32,6 @@ extension TripOptionSlice {
                     if let decodedSegment = TripOptionSliceSegment.decode(aSegment) {
                         decodedSegments.append(decodedSegment)
                     }
-                    
                 }
                 
                 return TripOptionSlice(kind: kind,
@@ -42,4 +41,12 @@ extension TripOptionSlice {
         
         return nil
     }
+}
+
+extension TripOptionSlice: Equatable {}
+
+func ==(lhs: TripOptionSlice, rhs: TripOptionSlice) -> Bool {
+    return lhs.kind == rhs.kind &&
+        lhs.duration == rhs.duration &&
+        lhs.segment == rhs.segment
 }

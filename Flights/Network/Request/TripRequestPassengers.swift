@@ -46,4 +46,59 @@ struct TripRequestPassengers {
         return jsonDict
     }
     
+    static func decode(jsonDict: [String: AnyObject]) -> TripRequestPassengers? {
+        var adultCount: Int = 0
+        if let decodedAdultCount = jsonDict["adultCount"] as? Int {
+            adultCount = decodedAdultCount
+        }
+        var childCount: Int?
+        if let decodedChildCount = jsonDict["childCount"] as? Int {
+            childCount = decodedChildCount
+        }
+        var infantInLapCount: Int?
+        if let decodedInfantInLapCount = jsonDict["infantInLapCount"] as? Int {
+            infantInLapCount = decodedInfantInLapCount
+        }
+        var infantInSeatCount: Int?
+        if let decodedInfantInSeatCount = jsonDict["infantInSeatCount"] as? Int {
+            infantInSeatCount = decodedInfantInSeatCount
+        }
+        var seniorCount: Int?
+        if let decodedSeniorCount = jsonDict["seniorCount"] as? Int {
+            seniorCount = decodedSeniorCount
+        }
+        
+        return TripRequestPassengers(adultCount: adultCount,
+            childCount: childCount,
+            infantInLapCount: infantInLapCount, 
+            infantInSeatCount: infantInSeatCount,
+            seniorCount: seniorCount)
+    }
+    
+}
+
+extension TripRequestPassengers: Equatable {}
+
+func ==(lhs: TripRequestPassengers, rhs: TripRequestPassengers) -> Bool {
+    if lhs.adultCount != rhs.adultCount {
+        return false
+    }
+
+    if lhs.childCount != rhs.adultCount {
+        return false
+    }
+    
+    if lhs.infantInLapCount != rhs.infantInLapCount {
+        return false
+    }
+    
+    if lhs.infantInSeatCount != rhs.infantInSeatCount {
+        return false
+    }
+    
+    if lhs.seniorCount != rhs.seniorCount {
+        return false
+    }
+    
+    return true
 }

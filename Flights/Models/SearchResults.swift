@@ -33,3 +33,9 @@ extension SearchResults {
         return nil
     }
 }
+
+extension SearchResults: Equatable {}
+
+func ==(lhs: SearchResults, rhs: SearchResults) -> Bool {
+    return lhs.kind == rhs.kind && lhs.trips == rhs.trips
+}

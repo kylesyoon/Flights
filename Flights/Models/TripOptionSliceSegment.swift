@@ -13,23 +13,25 @@ import Foundation
 struct TripOptionSliceSegment {
     let kind: String
     let duration: Int
-    let flight: Flight
+    let flight: TripOptionSliceSegmentFlight
     let identifier: String
     let cabin: String
     let bookingCode: String
     let bookingCodeCount: Int
     let marriedSegmentGroup: String
     let leg: [TripOptionSliceSegmentLeg]
+    let connectionDuration: Int?
     
     init(kind: String,
         duration: Int,
-        flight: Flight,
+        flight: TripOptionSliceSegmentFlight,
         identifier: String,
         cabin: String,
         bookingCode: String,
         bookingCodeCount: Int,
         marriedSegmentGroup: String,
-        leg: [TripOptionSliceSegmentLeg]) {
+        leg: [TripOptionSliceSegmentLeg],
+        connectionDuration: Int?) {
             self.kind = kind
             self.duration = duration
             self.flight = flight
@@ -39,6 +41,7 @@ struct TripOptionSliceSegment {
             self.bookingCodeCount = bookingCodeCount
             self.marriedSegmentGroup = marriedSegmentGroup
             self.leg = leg
+            self.connectionDuration = connectionDuration
     }
 }
 
@@ -54,14 +57,18 @@ extension TripOptionSliceSegment {
             marriedSegmentGroup = jsonDict["marriedSegmentGroup"] as? String,
             leg = jsonDict["leg"] as? [[String: AnyObject]] {
                 var decodedLegs = [TripOptionSliceSegmentLeg]()
-                
                 for aLeg in leg {
                     if let decodedLeg = TripOptionSliceSegmentLeg.decode(aLeg) {
                         decodedLegs.append(decodedLeg)
                     }
                 }
                 
-                if let decodedFlight = Flight.decode(flight) {
+                var connectionDuration: Int?
+                if let unwrappedConnectionDuration = jsonDict["connectionDuration"] as? Int {
+                    connectionDuration = unwrappedConnectionDuration
+                }
+                
+                if let decodedFlight = TripOptionSliceSegmentFlight.decode(flight) {
                     return TripOptionSliceSegment(kind: kind,
                         duration: duration,
                         flight: decodedFlight,
@@ -70,11 +77,26 @@ extension TripOptionSliceSegment {
                         bookingCode: bookingCode,
                         bookingCodeCount: bookingCodeCount,
                         marriedSegmentGroup: marriedSegmentGroup,
-                        leg: decodedLegs)
+                        leg: decodedLegs,
+                        connectionDuration: connectionDuration)
                 }
-
         }
         
         return nil
     }
+}
+
+extension TripOptionSliceSegment: Equatable {}
+
+func ==(lhs: TripOptionSliceSegment, rhs: TripOptionSliceSegment) -> Bool {
+    return lhs.kind == rhs.kind &&
+        lhs.duration == rhs.duration &&
+        lhs.flight == rhs.flight &&
+        lhs.identifier == rhs.identifier &&
+        lhs.cabin == rhs.cabin &&
+        lhs.bookingCode == rhs.bookingCode &&
+        lhs.bookingCodeCount == rhs.bookingCodeCount &&
+        lhs.marriedSegmentGroup == rhs.marriedSegmentGroup &&
+        lhs.leg == rhs.leg &&
+        lhs.connectionDuration == rhs.connectionDuration
 }

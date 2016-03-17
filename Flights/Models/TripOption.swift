@@ -41,9 +41,7 @@ extension TripOption {
                         decodedSlices.append(decodedSlice)
                     }
                 }
-                
                 var decodedPricings = [TripOptionPricing]()
-                
                 for aPricing in pricing {
                     if let decodedPricing = TripOptionPricing.decode(aPricing) {
                         decodedPricings.append(decodedPricing)
@@ -59,4 +57,14 @@ extension TripOption {
         
         return nil
     }
+}
+
+extension TripOption: Equatable {}
+
+func ==(lhs: TripOption, rhs: TripOption) -> Bool {
+    return lhs.kind == rhs.kind &&
+        lhs.saleTotal == rhs.saleTotal &&
+        lhs.identifier == rhs.identifier && 
+        lhs.slice == rhs.slice &&
+        lhs.pricing == rhs.pricing
 }

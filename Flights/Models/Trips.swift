@@ -12,16 +12,16 @@ struct Trips {
     let kind: String
     let requestID: String
     let data: TripsData
-    let tripOption: [TripOption]
+    let tripOptions: [TripOption]
     
     init(kind: String,
         requestID: String, 
         data: TripsData,
-        tripOption: [TripOption]) {
+        tripOptions: [TripOption]) {
             self.kind = kind
             self.requestID = requestID
             self.data = data
-            self.tripOption = tripOption
+            self.tripOptions = tripOptions
     }
 }
 
@@ -30,9 +30,9 @@ extension Trips {
         if let kind = jsonDict["kind"] as? String,
             requestID = jsonDict["requestId"] as? String,
             data = jsonDict["data"] as? [String: AnyObject],
-            tripOption = jsonDict ["tripOption"] as? [[String: AnyObject]] {
+            tripOptions = jsonDict ["tripOption"] as? [[String: AnyObject]] {
                 var decodedTripOptions = [TripOption]()
-                for option in tripOption {
+                for option in tripOptions {
                     if let decodedOption = TripOption.decode(option) {
                         decodedTripOptions.append(decodedOption)
                     }
@@ -42,10 +42,19 @@ extension Trips {
                     return Trips(kind: kind,
                         requestID: requestID,
                         data: data,
-                        tripOption: decodedTripOptions)
+                        tripOptions: decodedTripOptions)
                 }
         }
         
         return nil
     }
+}
+
+extension Trips: Equatable {}
+
+func ==(lhs: Trips, rhs: Trips) -> Bool {
+    return lhs.kind == rhs.kind &&
+        lhs.requestID == rhs.requestID &&
+        lhs.data == rhs.data &&
+        lhs.tripOptions == rhs.tripOptions
 }

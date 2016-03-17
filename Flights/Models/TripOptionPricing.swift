@@ -10,25 +10,25 @@ import Foundation
 
 struct TripOptionPricing {
     let kind: String
-    let fare: [AnyObject]
-    let segmentPricing: [AnyObject]
+    let fare: [TripOptionPricingFare]
+    let segmentPricing: [TripOptionPricingSegment]
     let baseFareTotal: String
     let saleFareTotal: String
     let saleTotal: String
-    let passengers: [String: AnyObject]
-    let tax: [AnyObject]
+    let passengers: TripRequestPassengers
+    let tax: [TripOptionPricingTax]
     let fareCalculation: String
     let latestTicketingTime: NSDate
     let ptc: String
     
     init(kind: String,
-        fare: [AnyObject], 
-        segmentPricing: [AnyObject], 
+        fare: [TripOptionPricingFare],
+        segmentPricing: [TripOptionPricingSegment],
         baseFareTotal: String, 
         saleFareTotal: String, 
         saleTotal: String, 
-        passengers: [String: AnyObject], 
-        tax: [AnyObject], 
+        passengers: TripRequestPassengers,
+        tax: [TripOptionPricingTax],
         fareCalculation: String, 
         latestTicketingTime: NSDate,
         ptc: String) {
@@ -49,25 +49,45 @@ struct TripOptionPricing {
 extension TripOptionPricing {
     static func decode(jsonDict: [String: AnyObject]) -> TripOptionPricing? {
         if let kind = jsonDict["kind"] as? String,
-            fare = jsonDict["fare"] as? [AnyObject],
-            segmentPricing = jsonDict["segmentPricing"] as? [AnyObject],
+            fare = jsonDict["fare"] as? [[String: AnyObject]],
+            segmentPricing = jsonDict["segmentPricing"] as? [[String: AnyObject]],
             baseFareTotal = jsonDict["baseFareTotal"] as? String,
             saleFareTotal = jsonDict["saleFareTotal"] as? String,
             saleTotal = jsonDict["saleTotal"] as? String,
             passengers = jsonDict["passengers"] as? [String: AnyObject],
-            tax = jsonDict["tax"] as? [AnyObject],
+            tax = jsonDict["tax"] as? [[String: AnyObject]],
             fareCalculation = jsonDict["fareCalculation"] as? String,
             latestTicketingTime = jsonDict["latestTicketingTime"] as? String,
             ptc = jsonDict["ptc"] as? String {
-                if let formattedLatestTicketingTime = NSDateFormatter.decode(latestTicketingTime) {
+                var decodedFares = [TripOptionPricingFare]()
+                for jsonFare in fare {
+                    if let decodedFare = TripOptionPricingFare.decode(jsonFare) {
+                        decodedFares.append(decodedFare)
+                    }
+                }
+                var decodedSegments = [TripOptionPricingSegment]()
+                for jsonSegment in segmentPricing {
+                    if let decodedSegment = TripOptionPricingSegment.decode(jsonSegment) {
+                        decodedSegments.append(decodedSegment)
+                    }
+                }
+                var decodedTaxes = [TripOptionPricingTax]()
+                for jsonTax in tax {
+                    if let decodedTax = TripOptionPricingTax.decode(jsonTax) {
+                        decodedTaxes.append(decodedTax)
+                    }
+                }
+                
+                if let formattedLatestTicketingTime = NSDateFormatter.decode(latestTicketingTime),
+                    decodedPassengers = TripRequestPassengers.decode(passengers) {
                     return TripOptionPricing(kind: kind,
-                        fare: fare,
-                        segmentPricing: segmentPricing,
+                        fare: decodedFares,
+                        segmentPricing: decodedSegments,
                         baseFareTotal: baseFareTotal,
                         saleFareTotal: saleFareTotal,
                         saleTotal: saleTotal,
-                        passengers: passengers,
-                        tax: tax,
+                        passengers: decodedPassengers,
+                        tax: decodedTaxes,
                         fareCalculation: fareCalculation,
                         latestTicketingTime: formattedLatestTicketingTime,
                         ptc: ptc)
@@ -78,4 +98,20 @@ extension TripOptionPricing {
         
         return nil
     }
+}
+
+extension TripOptionPricing: Equatable {}
+
+func ==(lhs: TripOptionPricing, rhs: TripOptionPricing) -> Bool {
+    return lhs.kind == rhs.kind &&
+        lhs.fare == rhs.fare && 
+        lhs.segmentPricing == rhs.segmentPricing &&
+        lhs.baseFareTotal == rhs.baseFareTotal && 
+        lhs.saleFareTotal == rhs.saleFareTotal && 
+        lhs.saleTotal == rhs.saleTotal &&
+        lhs.passengers == rhs.passengers &&
+        lhs.tax == rhs.tax && 
+        lhs.fareCalculation == rhs.fareCalculation &&
+        lhs.latestTicketingTime == rhs.latestTicketingTime &&
+        lhs.ptc == rhs.ptc
 }
