@@ -18,13 +18,28 @@ class TripsDataSource {
     
     var searchResults: SearchResults
     var tripCellDataToDisplay: [[TripCellData]] = []
-    var tripOptionsToDisplay: [[TripOption]] = []
     var isSelectingDepature = true {
         didSet {
             currentSliceIndex = isSelectingDepature ? 0 : 1
         }
     }
     private(set) var currentSliceIndex = 0
+    // Lets the datasource know that the second slice (return) for trip options need to be displayed
+    var tripSelectionStatus = TripSelectionStatus.selectedNone {
+        didSet {
+            // 0 index slice for departure, 1 index slice for return
+            switch tripSelectionStatus {
+            case .selectedReturn:
+                fallthrough
+            case .selectedDeparture:
+                currentSliceIndex = 1
+            case .selectedNone:
+                fallthrough
+            default:
+                currentSliceIndex = 0
+            }
+        }
+    }
     
     init(searchResults: SearchResults) {
         self.searchResults = searchResults
@@ -43,11 +58,26 @@ class TripsDataSource {
         return tripCellDataToDisplay.count
     }
     
-    func selectedTripOptionAtIndexPath(indexPath: NSIndexPath) {
-        let selectedTripCellData = self.tripCellDataToDisplay[indexPath.section][indexPath.row]
+    /**
+     Configures the data source to display the selected departure slice in section 0 and associated return slices in section 1. ONLY use with round trips.
+     
+     - parameter departureIndexPath: The departure slice index path
+     */
+    func configureReturnFlights(for departureIndexPath: NSIndexPath) {
+        let selectedTripCellData = self.tripCellDataToDisplay[departureIndexPath.section][departureIndexPath.row]
         let sameDepartureTripOptions = self.searchResults.trips.tripOptions.filter { $0.slice[0] == selectedTripCellData.tripOption.slice[0] }
         let departureTripCellData = sameDepartureTripOptions.map { TripCellData($0, self.fullCarrierNamesTripOption($0), self.currentSliceIndex) }
         self.tripCellDataToDisplay = [[selectedTripCellData], departureTripCellData]
+    }
+    
+    /**
+     Configured the data source to displat the selected complete trip option. ONLY use with round trips.
+     
+     - parameter returnIndexPath: The selected return slice index path.
+     */
+    func configureCompletedRoundTrip(for returnIndexPath: NSIndexPath) {
+        let selectedTripCellData = self.tripCellDataToDisplay[returnIndexPath.section][returnIndexPath.row]
+        self.tripCellDataToDisplay = [self.tripCellDataToDisplay[0], [selectedTripCellData]]
     }
     
     /**

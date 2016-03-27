@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 typealias TripAPISuccessCompletion = (SearchResults) -> Void
 typealias TripAPIFailureCompletion = (ErrorType) -> Void

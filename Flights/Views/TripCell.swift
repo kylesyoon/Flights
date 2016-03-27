@@ -64,7 +64,6 @@ class TripCell: UITableViewCell {
     }
     
     private func configureLayovers(slice: TripOptionSlice) {
-        // TODO: The integer conversion for connection duration is messed up somewhere. Investigate.
         var connectionDurationsAndAirports = [(Int, String)]()
         for segment in slice.segment {
             for leg in segment.leg {
@@ -81,13 +80,18 @@ class TripCell: UITableViewCell {
         let stopCount = connectionDurationsAndAirports.count
         if stopCount > 0 {
             self.layoverLabel.hidden = false
-            self.layoverLabel.text = "\(stopCount) \(stopCount > 1 ? "stops" : "stop")" + " "
+            // If there are more than one stop, then list them out underneath
+            self.layoverLabel.text = "\(stopCount) \(stopCount > 1 ? "stops\n" : "stop")" + " "
             for connectionDurationAndAirport in connectionDurationsAndAirports {
                 var layoverDetails = ""
                 if connectionDurationAndAirport.0 / 60 > 1 {
                     layoverDetails = layoverDetails + "\(Int(connectionDurationAndAirport.0 / 60))h" + " "
                 }
-                layoverDetails = layoverDetails + "\(connectionDurationAndAirport.0)m" + " in " + connectionDurationAndAirport.1
+                layoverDetails = layoverDetails + "\(connectionDurationAndAirport.0 % 60)m" + " in " + connectionDurationAndAirport.1
+                // If it's not the last one, then add a new line
+                if connectionDurationsAndAirports.last! != connectionDurationAndAirport {
+                    layoverDetails = layoverDetails + "\n"
+                }
                 self.layoverLabel.text = self.layoverLabel.text! + layoverDetails
             }
         } else {

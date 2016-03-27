@@ -9,7 +9,12 @@
 // TODO: Implement logic to grab departures, save returns until user taps a departure
 
 import UIKit
-import SwiftyJSON
+
+enum TripSelectionStatus {
+    case selectedNone
+    case selectedDeparture
+    case selectedReturn
+}
 
 class TripsViewController: UIViewController {
 
@@ -22,6 +27,7 @@ class TripsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "Trips"
         self.tableView.registerNib(UINib(nibName: TripCell.cellIdentifier, bundle: nil),
             forCellReuseIdentifier: TripCell.cellIdentifier)
         self.tableView.registerNib(UINib(nibName: TripHeaderView.cellIdentifier, bundle: nil),
@@ -78,8 +84,18 @@ extension TripsViewController: UITableViewDataSource {
             if let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(TripHeaderView.cellIdentifier) as? TripHeaderView {
                 switch section {
                 case 1:
-                    headerView.sectionTitleLabel.text = "Choose your return flight"
-                    return headerView
+                    if let tripsDataSource = self.tripsDataSource {
+                        switch tripsDataSource.tripSelectionStatus {
+                        case .selectedDeparture:
+                            headerView.sectionTitleLabel.text = "Choose your return flight"
+                        case .selectedReturn:
+                            headerView.sectionTitleLabel.text = "Selected return flight"
+                        default:
+                            return nil
+                        }
+                        
+                        return headerView
+                    }
                 case 0:
                     fallthrough
                 default:
@@ -116,9 +132,20 @@ extension TripsViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if let dataSource = self.tripsDataSource {
-            dataSource.isSelectingDepature = false
-            dataSource.selectedTripOptionAtIndexPath(indexPath)
+            switch dataSource.tripSelectionStatus {
+            case .selectedNone:
+                dataSource.tripSelectionStatus = .selectedDeparture
+                dataSource.configureReturnFlights(for: indexPath)
+            case .selectedDeparture:
+                dataSource.tripSelectionStatus = .selectedReturn
+                dataSource.configureCompletedRoundTrip(for: indexPath)
+            default:
+                return
+            }
             self.tableView.reloadData()
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0),
+                                                  atScrollPosition: .Top,
+                                                  animated: true)
         }
     }
     
