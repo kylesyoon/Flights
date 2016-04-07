@@ -128,7 +128,8 @@ extension TripsViewController: UITableViewDataSource {
 }
 
 extension TripsViewController: UITableViewDelegate {
-    
+    // TODO: Add selection behavior when trip option is all selected
+    // TODO: Add selection behavior for one way
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if let dataSource = self.tripsDataSource {

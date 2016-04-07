@@ -29,8 +29,8 @@ struct TripOptionSliceSegmentLeg {
     init(kind: String,
         identifier: String,
         aircraft: String, 
-        arrivalTime: NSDate, 
-        departureTime: NSDate, 
+        arrivalTime: NSDate,  // TODO: We have to show the local time of that location.
+        departureTime: NSDate, // TODO: We have to show the local time of that location.
         origin: String,
         destination: String, 
         originTerminal: String?,
