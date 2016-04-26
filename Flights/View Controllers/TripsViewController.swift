@@ -27,7 +27,7 @@ class TripsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.title = "Trips"
+        self.navigationItem.title = LocalizedStrings.trips
         self.tableView.registerNib(UINib(nibName: TripCell.cellIdentifier, bundle: nil),
             forCellReuseIdentifier: TripCell.cellIdentifier)
         self.tableView.registerNib(UINib(nibName: TripHeaderView.cellIdentifier, bundle: nil),
@@ -82,14 +82,17 @@ extension TripsViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if self.tableView.numberOfSections == 2 {
             if let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(TripHeaderView.cellIdentifier) as? TripHeaderView {
+                headerView.delegate = self
                 switch section {
                 case 1:
                     if let tripsDataSource = self.tripsDataSource {
                         switch tripsDataSource.tripSelectionStatus {
                         case .selectedDeparture:
-                            headerView.sectionTitleLabel.text = "Choose your return flight"
+                            headerView.sectionTitleLabel.text = LocalizedStrings.chooseYourReturnFlight
+                            headerView.type = .selectedNone
                         case .selectedReturn:
-                            headerView.sectionTitleLabel.text = "Selected return flight"
+                            headerView.sectionTitleLabel.text = LocalizedStrings.selectedReturnFlight
+                            headerView.type = .selectedReturn
                         default:
                             return nil
                         }
@@ -99,7 +102,8 @@ extension TripsViewController: UITableViewDataSource {
                 case 0:
                     fallthrough
                 default:
-                    headerView.sectionTitleLabel.text = "Selected departure flight"
+                    headerView.sectionTitleLabel.text = LocalizedStrings.selectedDepartureFlight
+                    headerView.type = .selectedDeparture
                     return headerView
                 }
             }
@@ -148,6 +152,14 @@ extension TripsViewController: UITableViewDelegate {
                                                   atScrollPosition: .Top,
                                                   animated: true)
         }
+    }
+
+}
+
+extension TripsViewController: TripHeaderViewDelegate {
+    
+    func headerViewDidTapClear(headerView: TripHeaderView) {
+        // TODO: Make data source handle deselecting based on the header type
     }
     
 }

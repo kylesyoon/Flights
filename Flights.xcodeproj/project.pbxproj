@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		48AC00FFC15790252E36B0C1 /* Pods_Flights.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D70E13BC178572FE631859 /* Pods_Flights.framework */; };
+		512123BC1CCEF70B00E9046C /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512123BB1CCEF70B00E9046C /* LocalizedStrings.swift */; };
 		512DD9EF1C6AE147001194F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512DD9EE1C6AE147001194F9 /* AppDelegate.swift */; };
 		512DD9F41C6AE147001194F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 512DD9F21C6AE147001194F9 /* Main.storyboard */; };
 		512DD9F61C6AE147001194F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 512DD9F51C6AE147001194F9 /* Assets.xcassets */; };
 		512DD9F91C6AE147001194F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 512DD9F71C6AE147001194F9 /* LaunchScreen.storyboard */; };
-		5194C6D71C7A868700826455 /* TripDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194C6D61C7A868700826455 /* TripDetailViewController.swift */; };
 		5194C6DC1C80052300826455 /* Trips.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5194C6DA1C80052300826455 /* Trips.storyboard */; };
 		5194C6E21C8530DE00826455 /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194C6E11C8530DE00826455 /* DateViewController.swift */; };
 		5194C6E41C85395E00826455 /* TripManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194C6E31C85395E00826455 /* TripManager.swift */; };
@@ -56,13 +56,13 @@
 /* Begin PBXFileReference section */
 		375163D6F6A50DBA08327C7F /* Pods-Flights.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flights.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flights/Pods-Flights.release.xcconfig"; sourceTree = "<group>"; };
 		49D70E13BC178572FE631859 /* Pods_Flights.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flights.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		512123BB1CCEF70B00E9046C /* LocalizedStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalizedStrings.swift; path = Extensions/LocalizedStrings.swift; sourceTree = "<group>"; };
 		512DD9EB1C6AE147001194F9 /* Flights.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flights.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		512DD9EE1C6AE147001194F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		512DD9F31C6AE147001194F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		512DD9F51C6AE147001194F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		512DD9F81C6AE147001194F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		512DD9FA1C6AE147001194F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5194C6D61C7A868700826455 /* TripDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripDetailViewController.swift; sourceTree = "<group>"; };
 		5194C6DB1C80052300826455 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Flights/Base.lproj/Trips.storyboard; sourceTree = "<group>"; };
 		5194C6E11C8530DE00826455 /* DateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
 		5194C6E31C85395E00826455 /* TripManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripManager.swift; path = Singletons/TripManager.swift; sourceTree = "<group>"; };
@@ -147,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				512DD9EE1C6AE147001194F9 /* AppDelegate.swift */,
+				512123BB1CCEF70B00E9046C /* LocalizedStrings.swift */,
 				51E933EC1C8B31DF00F0AADF /* Extensions */,
 				5194C6EB1C8541C100826455 /* Views */,
 				5AA339141C6E7A7500DB4E76 /* View Controllers */,
@@ -227,7 +228,6 @@
 			children = (
 				5AA339161C6E7A9C00DB4E76 /* SearchViewController.swift */,
 				5AA339151C6E7A9C00DB4E76 /* TripsViewController.swift */,
-				5194C6D61C7A868700826455 /* TripDetailViewController.swift */,
 				5194C6E11C8530DE00826455 /* DateViewController.swift */,
 			);
 			path = "View Controllers";
@@ -406,10 +406,10 @@
 				51E933FE1C8B95F700F0AADF /* TripOptionPricingSegment.swift in Sources */,
 				51F6E2951C7147C70086CE99 /* SearchResults.swift in Sources */,
 				5194C6E71C853F1400826455 /* TripsDataSource.swift in Sources */,
-				5194C6D71C7A868700826455 /* TripDetailViewController.swift in Sources */,
 				51E934041C8BF83500F0AADF /* TripHeaderView.swift in Sources */,
 				51E933F41C8B8F8500F0AADF /* TripsDataAircraft.swift in Sources */,
 				51E933EB1C8B31D900F0AADF /* NSDate+Extension.swift in Sources */,
+				512123BC1CCEF70B00E9046C /* LocalizedStrings.swift in Sources */,
 				5194C6E41C85395E00826455 /* TripManager.swift in Sources */,
 				51E933F21C8B8EAC00F0AADF /* TripsDataCity.swift in Sources */,
 				5AA339081C6E52CB00DB4E76 /* HTTPSessionManager.swift in Sources */,

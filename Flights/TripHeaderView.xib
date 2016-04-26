@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -23,13 +23,23 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQM-ld-g3g">
+                            <rect key="frame" x="537" y="35" width="55" height="30"/>
+                            <state key="normal" title="Remove"/>
+                            <connections>
+                                <action selector="didTapRemoveButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="LPq-WG-fRk"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="Vda-Ca-WsA" secondAttribute="bottom" id="Fxp-yx-h3b"/>
                         <constraint firstAttribute="trailing" secondItem="Vda-Ca-WsA" secondAttribute="trailing" constant="8" id="Hez-EW-2Sq"/>
+                        <constraint firstAttribute="bottom" secondItem="bQM-ld-g3g" secondAttribute="bottom" constant="35" id="K9t-0G-Owr"/>
+                        <constraint firstItem="bQM-ld-g3g" firstAttribute="top" secondItem="Xla-R4-xMv" secondAttribute="top" constant="35" id="Z1N-Yg-cK2"/>
                         <constraint firstItem="Vda-Ca-WsA" firstAttribute="top" secondItem="Xla-R4-xMv" secondAttribute="top" id="b2p-GT-Zn4"/>
                         <constraint firstItem="Vda-Ca-WsA" firstAttribute="leading" secondItem="Xla-R4-xMv" secondAttribute="leading" constant="8" id="mzC-LD-GdI"/>
+                        <constraint firstAttribute="trailing" secondItem="bQM-ld-g3g" secondAttribute="trailing" constant="8" id="yQ2-EG-Weh"/>
                     </constraints>
                 </view>
             </subviews>

@@ -262,7 +262,7 @@ extension SearchViewController: DateViewControllerDelegate {
             if let returnDate = self.returnDate {
                 if  date.compare(returnDate) == .OrderedDescending {
                     self.returnDate = nil
-                    self.returnDateButton.setTitle("Return date", forState: .Normal)
+                    self.returnDateButton.setTitle(LocalizedStrings.returnDate, forState: .Normal)
                 }
             }
         } else {
@@ -274,7 +274,7 @@ extension SearchViewController: DateViewControllerDelegate {
                 if date.compare(departureDate) == .OrderedAscending {
                     // If the return date is earlier than the departure date, do nothing.
                     self.departureDate = nil
-                    self.departureDateButton.setTitle("Departure date", forState: .Normal)
+                    self.departureDateButton.setTitle(LocalizedStrings.departureDate, forState: .Normal)
                 }
             }
         }
