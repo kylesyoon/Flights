@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import QPXExpressWrapper
 
 typealias TripAPISuccessCompletion = (SearchResults) -> Void
 typealias TripAPIFailureCompletion = (ErrorType) -> Void

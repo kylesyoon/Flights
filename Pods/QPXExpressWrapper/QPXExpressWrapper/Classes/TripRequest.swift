@@ -7,23 +7,22 @@
 //
 
 import Foundation
-import Alamofire
 
-struct TripRequest {
+public struct TripRequest {
 
-    let passengers: TripRequestPassengers
-    let slice: [TripRequestSlice]
-    let maxPrice: String?
-    let saleCountry: String?
-    let refundable: Bool?
-    let solutions: Int?
+    public let passengers: TripRequestPassengers
+    public let slice: [TripRequestSlice]
+    public let maxPrice: String?
+    public let saleCountry: String?
+    public let refundable: Bool?
+    public let solutions: Int?
     
-    init(passengers: TripRequestPassengers,
-        slice: [TripRequestSlice], 
-        maxPrice: String?, 
-        saleCountry: String?, 
-        refundable: Bool?, 
-        solutions: Int?) {
+    public init(passengers: TripRequestPassengers,
+                slice: [TripRequestSlice],
+                maxPrice: String?,
+                saleCountry: String?,
+                refundable: Bool?,
+                solutions: Int?) {
             self.passengers = passengers
             self.slice = slice
             self.maxPrice = maxPrice
@@ -32,7 +31,7 @@ struct TripRequest {
             self.solutions = solutions
     }
     
-    func jsonDict() -> [String: AnyObject] {
+    public func jsonDict() -> [String: AnyObject] {
         var jsonDict = ["passengers": self.passengers.jsonDict()].mutableCopy() as! [String: AnyObject]
         let slicesJSONArray = self.slice.map { slice in slice.jsonDict() }
         jsonDict["slice"] = slicesJSONArray

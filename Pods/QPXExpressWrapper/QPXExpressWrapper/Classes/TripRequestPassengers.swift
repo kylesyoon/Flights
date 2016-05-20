@@ -8,25 +8,25 @@
 
 import Foundation
 
-struct TripRequestPassengers {
+public struct TripRequestPassengers {
     
-    let kind: String = "qpxexpress#passengerCounts"
-    var adultCount: Int = 1
-    let childCount: Int?
-    let infantInLapCount: Int?
-    let infantInSeatCount: Int?
-    let seniorCount: Int?
+    public let kind: String = "qpxexpress#passengerCounts"
+    public var adultCount: Int = 1
+    public let childCount: Int?
+    public let infantInLapCount: Int?
+    public let infantInSeatCount: Int?
+    public let seniorCount: Int?
     
-    init(adultCount: Int, // There has to be an adult no matter what right?
-        childCount: Int?,
-        infantInLapCount: Int?, 
-        infantInSeatCount: Int?,
-        seniorCount: Int?) {
-            self.adultCount = adultCount
-            self.childCount = childCount
-            self.infantInLapCount = infantInLapCount
-            self.infantInSeatCount = infantInSeatCount
-            self.seniorCount = seniorCount
+    public init(adultCount: Int,
+                childCount: Int?,
+                infantInLapCount: Int?,
+                infantInSeatCount: Int?,
+                seniorCount: Int?) {
+        self.adultCount = adultCount
+        self.childCount = childCount
+        self.infantInLapCount = infantInLapCount
+        self.infantInSeatCount = infantInSeatCount
+        self.seniorCount = seniorCount
     }
     
     func jsonDict() -> [String: AnyObject] {
@@ -79,7 +79,7 @@ struct TripRequestPassengers {
 
 extension TripRequestPassengers: Equatable {}
 
-func ==(lhs: TripRequestPassengers, rhs: TripRequestPassengers) -> Bool {
+public func ==(lhs: TripRequestPassengers, rhs: TripRequestPassengers) -> Bool {
     if lhs.adultCount != rhs.adultCount {
         return false
     }

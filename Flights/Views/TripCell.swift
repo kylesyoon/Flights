@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QPXExpressWrapper
 
 class TripCell: UITableViewCell {
     
@@ -19,7 +20,7 @@ class TripCell: UITableViewCell {
     @IBOutlet var detailsLabel: UILabel!
     @IBOutlet var layoverLabel: UILabel!
     
-    func configure(tripCellData: TripCellData) {
+    internal func configure(with tripCellData: TripCellData) {
         let tripOption = tripCellData.tripOption
         let sliceIndex = tripCellData.sliceIndex
         self.configurePrice(tripOption)

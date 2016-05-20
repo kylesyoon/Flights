@@ -8,11 +8,12 @@
 
 import Foundation
 
-struct TripsDataAirport {
-    let kind: String
-    let code: String
-    let city: String
-    let name: String
+public struct TripsDataAirport {
+    
+    public let kind: String
+    public let code: String
+    public let city: String
+    public let name: String
     
     init(kind: String, code: String, city: String, name: String) {
         self.kind = kind
@@ -35,13 +36,14 @@ struct TripsDataAirport {
         
         return nil
     }
+    
 }
 
 //TODO: Equatable protocol
 
 extension TripsDataAirport: Equatable {}
 
-func ==(lhs: TripsDataAirport, rhs: TripsDataAirport) -> Bool {
+public func ==(lhs: TripsDataAirport, rhs: TripsDataAirport) -> Bool {
     return lhs.kind == rhs.kind &&
         lhs.code == rhs.code &&
         lhs.city == rhs.city &&

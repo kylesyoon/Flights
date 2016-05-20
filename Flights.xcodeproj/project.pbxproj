@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		48AC00FFC15790252E36B0C1 /* Pods_Flights.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D70E13BC178572FE631859 /* Pods_Flights.framework */; };
 		512123BC1CCEF70B00E9046C /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512123BB1CCEF70B00E9046C /* LocalizedStrings.swift */; };
 		512DD9EF1C6AE147001194F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512DD9EE1C6AE147001194F9 /* AppDelegate.swift */; };
 		512DD9F41C6AE147001194F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 512DD9F21C6AE147001194F9 /* Main.storyboard */; };
@@ -19,43 +18,25 @@
 		5194C6E71C853F1400826455 /* TripsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194C6E61C853F1400826455 /* TripsDataSource.swift */; };
 		5194C6EA1C8541BE00826455 /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194C6E91C8541BE00826455 /* TripCell.swift */; };
 		5194C6EF1C85420E00826455 /* TripCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5194C6EE1C85420E00826455 /* TripCell.xib */; };
-		5194C6F41C869E5300826455 /* TripRequestPassengers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194C6F31C869E5300826455 /* TripRequestPassengers.swift */; };
-		5194C6F61C869E6E00826455 /* TripRequestSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194C6F51C869E6E00826455 /* TripRequestSlice.swift */; };
-		5194C6F81C869E9700826455 /* TripRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194C6F71C869E9700826455 /* TripRequest.swift */; };
+		51B6230F1CDE9D8F004CE5B6 /* TripHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B6230D1CDE9D8F004CE5B6 /* TripHeaderView.swift */; };
+		51B623101CDE9D8F004CE5B6 /* TripHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51B6230E1CDE9D8F004CE5B6 /* TripHeaderView.xib */; };
+		51B623121CDE9DBA004CE5B6 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B623111CDE9DBA004CE5B6 /* ButtonCell.swift */; };
+		51B623141CDE9DC6004CE5B6 /* ButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51B623131CDE9DC6004CE5B6 /* ButtonCell.xib */; };
 		51E933EB1C8B31D900F0AADF /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E933EA1C8B31D900F0AADF /* NSDate+Extension.swift */; };
 		51E933EE1C8B320400F0AADF /* NSDateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E933ED1C8B320400F0AADF /* NSDateFormatter+Extension.swift */; };
-		51E933F01C8B494800F0AADF /* TripsDataAirport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E933EF1C8B494800F0AADF /* TripsDataAirport.swift */; };
-		51E933F21C8B8EAC00F0AADF /* TripsDataCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E933F11C8B8EAC00F0AADF /* TripsDataCity.swift */; };
-		51E933F41C8B8F8500F0AADF /* TripsDataAircraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E933F31C8B8F8500F0AADF /* TripsDataAircraft.swift */; };
-		51E933F61C8B90BF00F0AADF /* TripsDataCarrier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E933F51C8B90BF00F0AADF /* TripsDataCarrier.swift */; };
-		51E933F81C8B914800F0AADF /* TripsDataTax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E933F71C8B914800F0AADF /* TripsDataTax.swift */; };
-		51E933FA1C8B937800F0AADF /* TripOptionPricingFare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E933F91C8B937800F0AADF /* TripOptionPricingFare.swift */; };
-		51E933FE1C8B95F700F0AADF /* TripOptionPricingSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E933FD1C8B95F700F0AADF /* TripOptionPricingSegment.swift */; };
-		51E934001C8B96B200F0AADF /* TripOptionPricingTax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E933FF1C8B96B200F0AADF /* TripOptionPricingTax.swift */; };
-		51E934021C8BF7FA00F0AADF /* TripHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51E934011C8BF7FA00F0AADF /* TripHeaderView.xib */; };
-		51E934041C8BF83500F0AADF /* TripHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E934031C8BF83500F0AADF /* TripHeaderView.swift */; };
 		51E934081C923C7500F0AADF /* TypeaheadDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E934071C923C7500F0AADF /* TypeaheadDataSource.swift */; };
 		51E9340A1C924DE300F0AADF /* airports.json in Resources */ = {isa = PBXBuildFile; fileRef = 51E934091C924DE300F0AADF /* airports.json */; };
 		51F6E2931C711F000086CE99 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F6E2921C711F000086CE99 /* Keys.swift */; };
-		51F6E2951C7147C70086CE99 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F6E2941C7147C70086CE99 /* SearchResults.swift */; };
-		51F6E2971C714B360086CE99 /* Trips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F6E2961C714B360086CE99 /* Trips.swift */; };
-		51F6E2991C714E120086CE99 /* TripsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F6E2981C714E120086CE99 /* TripsData.swift */; };
-		51F6E29B1C714F7A0086CE99 /* TripOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F6E29A1C714F7A0086CE99 /* TripOption.swift */; };
-		51F6E29F1C7150FF0086CE99 /* TripOptionSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F6E29E1C7150FF0086CE99 /* TripOptionSlice.swift */; };
-		51F6E2A11C7152490086CE99 /* TripOptionSliceSegmentLeg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F6E2A01C7152490086CE99 /* TripOptionSliceSegmentLeg.swift */; };
-		51F6E2A31C71578F0086CE99 /* TripOptionPricing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F6E2A21C71578F0086CE99 /* TripOptionPricing.swift */; };
-		51F6E2A71C715C5A0086CE99 /* TripOptionSliceSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F6E2A61C715C5A0086CE99 /* TripOptionSliceSegment.swift */; };
-		51F6E2AB1C716F0A0086CE99 /* TripOptionSliceSegmentFlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F6E2AA1C716F0A0086CE99 /* TripOptionSliceSegmentFlight.swift */; };
 		5AA339081C6E52CB00DB4E76 /* HTTPSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA339071C6E52CB00DB4E76 /* HTTPSessionManager.swift */; };
 		5AA3390B1C6E534D00DB4E76 /* APIUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA3390A1C6E534D00DB4E76 /* APIUtility.swift */; };
 		5AA339131C6E5C7100DB4E76 /* TripAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA339121C6E5C7100DB4E76 /* TripAPI.swift */; };
 		5AA339171C6E7A9C00DB4E76 /* TripsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA339151C6E7A9C00DB4E76 /* TripsViewController.swift */; };
 		5AA339181C6E7A9C00DB4E76 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA339161C6E7A9C00DB4E76 /* SearchViewController.swift */; };
+		C53B3EA6AA34176CE0EA6A05 /* Pods_Flights.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FAD81C3B56BCEC0676E3ED4 /* Pods_Flights.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		375163D6F6A50DBA08327C7F /* Pods-Flights.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flights.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flights/Pods-Flights.release.xcconfig"; sourceTree = "<group>"; };
-		49D70E13BC178572FE631859 /* Pods_Flights.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flights.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FAD81C3B56BCEC0676E3ED4 /* Pods_Flights.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Flights.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		512123BB1CCEF70B00E9046C /* LocalizedStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocalizedStrings.swift; path = Extensions/LocalizedStrings.swift; sourceTree = "<group>"; };
 		512DD9EB1C6AE147001194F9 /* Flights.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flights.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		512DD9EE1C6AE147001194F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,39 +50,22 @@
 		5194C6E61C853F1400826455 /* TripsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripsDataSource.swift; path = "Data Sources/TripsDataSource.swift"; sourceTree = "<group>"; };
 		5194C6E91C8541BE00826455 /* TripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripCell.swift; path = Views/TripCell.swift; sourceTree = "<group>"; };
 		5194C6EE1C85420E00826455 /* TripCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TripCell.xib; path = Views/TripCell.xib; sourceTree = "<group>"; };
-		5194C6F31C869E5300826455 /* TripRequestPassengers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripRequestPassengers.swift; path = Request/TripRequestPassengers.swift; sourceTree = "<group>"; };
-		5194C6F51C869E6E00826455 /* TripRequestSlice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripRequestSlice.swift; path = Request/TripRequestSlice.swift; sourceTree = "<group>"; };
-		5194C6F71C869E9700826455 /* TripRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripRequest.swift; path = Request/TripRequest.swift; sourceTree = "<group>"; };
+		51B6230D1CDE9D8F004CE5B6 /* TripHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripHeaderView.swift; path = Views/TripHeaderView.swift; sourceTree = "<group>"; };
+		51B6230E1CDE9D8F004CE5B6 /* TripHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TripHeaderView.xib; path = Views/TripHeaderView.xib; sourceTree = "<group>"; };
+		51B623111CDE9DBA004CE5B6 /* ButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ButtonCell.swift; path = Views/ButtonCell.swift; sourceTree = "<group>"; };
+		51B623131CDE9DC6004CE5B6 /* ButtonCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ButtonCell.xib; path = Views/ButtonCell.xib; sourceTree = "<group>"; };
 		51E933EA1C8B31D900F0AADF /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDate+Extension.swift"; path = "Extensions/NSDate+Extension.swift"; sourceTree = "<group>"; };
 		51E933ED1C8B320400F0AADF /* NSDateFormatter+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDateFormatter+Extension.swift"; path = "Extensions/NSDateFormatter+Extension.swift"; sourceTree = "<group>"; };
-		51E933EF1C8B494800F0AADF /* TripsDataAirport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripsDataAirport.swift; sourceTree = "<group>"; };
-		51E933F11C8B8EAC00F0AADF /* TripsDataCity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripsDataCity.swift; sourceTree = "<group>"; };
-		51E933F31C8B8F8500F0AADF /* TripsDataAircraft.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripsDataAircraft.swift; sourceTree = "<group>"; };
-		51E933F51C8B90BF00F0AADF /* TripsDataCarrier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripsDataCarrier.swift; sourceTree = "<group>"; };
-		51E933F71C8B914800F0AADF /* TripsDataTax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripsDataTax.swift; sourceTree = "<group>"; };
-		51E933F91C8B937800F0AADF /* TripOptionPricingFare.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripOptionPricingFare.swift; sourceTree = "<group>"; };
-		51E933FD1C8B95F700F0AADF /* TripOptionPricingSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripOptionPricingSegment.swift; sourceTree = "<group>"; };
-		51E933FF1C8B96B200F0AADF /* TripOptionPricingTax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripOptionPricingTax.swift; sourceTree = "<group>"; };
-		51E934011C8BF7FA00F0AADF /* TripHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TripHeaderView.xib; sourceTree = "<group>"; };
-		51E934031C8BF83500F0AADF /* TripHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripHeaderView.swift; sourceTree = "<group>"; };
 		51E934071C923C7500F0AADF /* TypeaheadDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TypeaheadDataSource.swift; path = "Data Sources/TypeaheadDataSource.swift"; sourceTree = "<group>"; };
 		51E934091C924DE300F0AADF /* airports.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = airports.json; sourceTree = "<group>"; };
 		51F6E2921C711F000086CE99 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Keys.swift; path = Flights/Keys.swift; sourceTree = "<group>"; };
-		51F6E2941C7147C70086CE99 /* SearchResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
-		51F6E2961C714B360086CE99 /* Trips.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trips.swift; sourceTree = "<group>"; };
-		51F6E2981C714E120086CE99 /* TripsData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripsData.swift; sourceTree = "<group>"; };
-		51F6E29A1C714F7A0086CE99 /* TripOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripOption.swift; sourceTree = "<group>"; };
-		51F6E29E1C7150FF0086CE99 /* TripOptionSlice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripOptionSlice.swift; sourceTree = "<group>"; };
-		51F6E2A01C7152490086CE99 /* TripOptionSliceSegmentLeg.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripOptionSliceSegmentLeg.swift; sourceTree = "<group>"; };
-		51F6E2A21C71578F0086CE99 /* TripOptionPricing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripOptionPricing.swift; sourceTree = "<group>"; };
-		51F6E2A61C715C5A0086CE99 /* TripOptionSliceSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripOptionSliceSegment.swift; sourceTree = "<group>"; };
-		51F6E2AA1C716F0A0086CE99 /* TripOptionSliceSegmentFlight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripOptionSliceSegmentFlight.swift; sourceTree = "<group>"; };
 		5AA339071C6E52CB00DB4E76 /* HTTPSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPSessionManager.swift; sourceTree = "<group>"; };
 		5AA3390A1C6E534D00DB4E76 /* APIUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIUtility.swift; sourceTree = "<group>"; };
 		5AA339121C6E5C7100DB4E76 /* TripAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripAPI.swift; sourceTree = "<group>"; };
 		5AA339151C6E7A9C00DB4E76 /* TripsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripsViewController.swift; sourceTree = "<group>"; };
 		5AA339161C6E7A9C00DB4E76 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		FFE6F51DD1008529AF835FB9 /* Pods-Flights.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flights.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flights/Pods-Flights.debug.xcconfig"; sourceTree = "<group>"; };
+		CF8E9B47B76ABD42EE623C4D /* Pods-Flights.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flights.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Flights/Pods-Flights.debug.xcconfig"; sourceTree = "<group>"; };
+		D55F26C51B8CE7C361419454 /* Pods-Flights.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Flights.release.xcconfig"; path = "Pods/Target Support Files/Pods-Flights/Pods-Flights.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,17 +73,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48AC00FFC15790252E36B0C1 /* Pods_Flights.framework in Frameworks */,
+				C53B3EA6AA34176CE0EA6A05 /* Pods_Flights.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		47A575D60F29DDDD7522D288 /* Frameworks */ = {
+		217E167FD4253B75B4543794 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				49D70E13BC178572FE631859 /* Pods_Flights.framework */,
+				3FAD81C3B56BCEC0676E3ED4 /* Pods_Flights.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -130,8 +94,8 @@
 				51F6E2921C711F000086CE99 /* Keys.swift */,
 				512DD9ED1C6AE147001194F9 /* Flights */,
 				512DD9EC1C6AE147001194F9 /* Products */,
-				8C210FAE91E7568D22A82F11 /* Pods */,
-				47A575D60F29DDDD7522D288 /* Frameworks */,
+				82F88014704969ED4C47F9F1 /* Pods */,
+				217E167FD4253B75B4543794 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -152,7 +116,6 @@
 				5194C6EB1C8541C100826455 /* Views */,
 				5AA339141C6E7A7500DB4E76 /* View Controllers */,
 				5194C6E81C853F2000826455 /* Data Sources */,
-				5AA339191C6E7AB100DB4E76 /* Models */,
 				5AA339091C6E52D000DB4E76 /* Network */,
 				5194C6E51C85396100826455 /* Singletons */,
 				512DD9F21C6AE147001194F9 /* Main.storyboard */,
@@ -187,20 +150,12 @@
 			children = (
 				5194C6E91C8541BE00826455 /* TripCell.swift */,
 				5194C6EE1C85420E00826455 /* TripCell.xib */,
-				51E934031C8BF83500F0AADF /* TripHeaderView.swift */,
-				51E934011C8BF7FA00F0AADF /* TripHeaderView.xib */,
+				51B6230D1CDE9D8F004CE5B6 /* TripHeaderView.swift */,
+				51B6230E1CDE9D8F004CE5B6 /* TripHeaderView.xib */,
+				51B623111CDE9DBA004CE5B6 /* ButtonCell.swift */,
+				51B623131CDE9DC6004CE5B6 /* ButtonCell.xib */,
 			);
 			name = Views;
-			sourceTree = "<group>";
-		};
-		5194C6F21C869E3600826455 /* Request */ = {
-			isa = PBXGroup;
-			children = (
-				5194C6F71C869E9700826455 /* TripRequest.swift */,
-				5194C6F31C869E5300826455 /* TripRequestPassengers.swift */,
-				5194C6F51C869E6E00826455 /* TripRequestSlice.swift */,
-			);
-			name = Request;
 			sourceTree = "<group>";
 		};
 		51E933EC1C8B31DF00F0AADF /* Extensions */ = {
@@ -218,7 +173,6 @@
 				5AA339071C6E52CB00DB4E76 /* HTTPSessionManager.swift */,
 				5AA3390A1C6E534D00DB4E76 /* APIUtility.swift */,
 				5AA339121C6E5C7100DB4E76 /* TripAPI.swift */,
-				5194C6F21C869E3600826455 /* Request */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -233,35 +187,11 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		5AA339191C6E7AB100DB4E76 /* Models */ = {
+		82F88014704969ED4C47F9F1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				51F6E2941C7147C70086CE99 /* SearchResults.swift */,
-				51F6E2961C714B360086CE99 /* Trips.swift */,
-				51F6E2981C714E120086CE99 /* TripsData.swift */,
-				51E933EF1C8B494800F0AADF /* TripsDataAirport.swift */,
-				51E933F11C8B8EAC00F0AADF /* TripsDataCity.swift */,
-				51E933F31C8B8F8500F0AADF /* TripsDataAircraft.swift */,
-				51E933F71C8B914800F0AADF /* TripsDataTax.swift */,
-				51E933F51C8B90BF00F0AADF /* TripsDataCarrier.swift */,
-				51F6E29A1C714F7A0086CE99 /* TripOption.swift */,
-				51F6E29E1C7150FF0086CE99 /* TripOptionSlice.swift */,
-				51F6E2A61C715C5A0086CE99 /* TripOptionSliceSegment.swift */,
-				51F6E2AA1C716F0A0086CE99 /* TripOptionSliceSegmentFlight.swift */,
-				51F6E2A01C7152490086CE99 /* TripOptionSliceSegmentLeg.swift */,
-				51F6E2A21C71578F0086CE99 /* TripOptionPricing.swift */,
-				51E933F91C8B937800F0AADF /* TripOptionPricingFare.swift */,
-				51E933FD1C8B95F700F0AADF /* TripOptionPricingSegment.swift */,
-				51E933FF1C8B96B200F0AADF /* TripOptionPricingTax.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		8C210FAE91E7568D22A82F11 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				FFE6F51DD1008529AF835FB9 /* Pods-Flights.debug.xcconfig */,
-				375163D6F6A50DBA08327C7F /* Pods-Flights.release.xcconfig */,
+				CF8E9B47B76ABD42EE623C4D /* Pods-Flights.debug.xcconfig */,
+				D55F26C51B8CE7C361419454 /* Pods-Flights.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -273,12 +203,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 512DD9FD1C6AE147001194F9 /* Build configuration list for PBXNativeTarget "Flights" */;
 			buildPhases = (
-				62C238C9B7C8330ADEE37420 /* Check Pods Manifest.lock */,
+				DF4B1BE217DEE5377312D2CA /* 📦 Check Pods Manifest.lock */,
 				512DD9E71C6AE147001194F9 /* Sources */,
 				512DD9E81C6AE147001194F9 /* Frameworks */,
 				512DD9E91C6AE147001194F9 /* Resources */,
-				08713DEA403918A0C6E7C024 /* Embed Pods Frameworks */,
-				9F24E92D4D390144B97DB80C /* Copy Pods Resources */,
+				A1FD11CFBF2B1648C732F11F /* 📦 Embed Pods Frameworks */,
+				93741637BE37FC1D193B3A7B /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -329,8 +259,9 @@
 			files = (
 				51E9340A1C924DE300F0AADF /* airports.json in Resources */,
 				5194C6EF1C85420E00826455 /* TripCell.xib in Resources */,
+				51B623101CDE9D8F004CE5B6 /* TripHeaderView.xib in Resources */,
+				51B623141CDE9DC6004CE5B6 /* ButtonCell.xib in Resources */,
 				512DD9F91C6AE147001194F9 /* LaunchScreen.storyboard in Resources */,
-				51E934021C8BF7FA00F0AADF /* TripHeaderView.xib in Resources */,
 				5194C6DC1C80052300826455 /* Trips.storyboard in Resources */,
 				512DD9F61C6AE147001194F9 /* Assets.xcassets in Resources */,
 				512DD9F41C6AE147001194F9 /* Main.storyboard in Resources */,
@@ -340,14 +271,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		08713DEA403918A0C6E7C024 /* Embed Pods Frameworks */ = {
+		93741637BE37FC1D193B3A7B /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Flights/Pods-Flights-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1FD11CFBF2B1648C732F11F /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -355,34 +301,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Flights/Pods-Flights-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		62C238C9B7C8330ADEE37420 /* Check Pods Manifest.lock */ = {
+		DF4B1BE217DEE5377312D2CA /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		9F24E92D4D390144B97DB80C /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Flights/Pods-Flights-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -393,41 +324,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				5194C6E21C8530DE00826455 /* DateViewController.swift in Sources */,
-				5194C6F81C869E9700826455 /* TripRequest.swift in Sources */,
-				5194C6F61C869E6E00826455 /* TripRequestSlice.swift in Sources */,
-				51E933F81C8B914800F0AADF /* TripsDataTax.swift in Sources */,
 				5AA339171C6E7A9C00DB4E76 /* TripsViewController.swift in Sources */,
 				5AA339131C6E5C7100DB4E76 /* TripAPI.swift in Sources */,
 				5194C6EA1C8541BE00826455 /* TripCell.swift in Sources */,
-				51F6E2A71C715C5A0086CE99 /* TripOptionSliceSegment.swift in Sources */,
-				51E933F01C8B494800F0AADF /* TripsDataAirport.swift in Sources */,
-				51F6E2A31C71578F0086CE99 /* TripOptionPricing.swift in Sources */,
 				5AA339181C6E7A9C00DB4E76 /* SearchViewController.swift in Sources */,
-				51E933FE1C8B95F700F0AADF /* TripOptionPricingSegment.swift in Sources */,
-				51F6E2951C7147C70086CE99 /* SearchResults.swift in Sources */,
 				5194C6E71C853F1400826455 /* TripsDataSource.swift in Sources */,
-				51E934041C8BF83500F0AADF /* TripHeaderView.swift in Sources */,
-				51E933F41C8B8F8500F0AADF /* TripsDataAircraft.swift in Sources */,
 				51E933EB1C8B31D900F0AADF /* NSDate+Extension.swift in Sources */,
 				512123BC1CCEF70B00E9046C /* LocalizedStrings.swift in Sources */,
 				5194C6E41C85395E00826455 /* TripManager.swift in Sources */,
-				51E933F21C8B8EAC00F0AADF /* TripsDataCity.swift in Sources */,
 				5AA339081C6E52CB00DB4E76 /* HTTPSessionManager.swift in Sources */,
-				51F6E2971C714B360086CE99 /* Trips.swift in Sources */,
 				51F6E2931C711F000086CE99 /* Keys.swift in Sources */,
-				51F6E2A11C7152490086CE99 /* TripOptionSliceSegmentLeg.swift in Sources */,
 				51E934081C923C7500F0AADF /* TypeaheadDataSource.swift in Sources */,
-				51E933F61C8B90BF00F0AADF /* TripsDataCarrier.swift in Sources */,
 				5AA3390B1C6E534D00DB4E76 /* APIUtility.swift in Sources */,
-				51E933FA1C8B937800F0AADF /* TripOptionPricingFare.swift in Sources */,
-				51F6E2AB1C716F0A0086CE99 /* TripOptionSliceSegmentFlight.swift in Sources */,
-				51F6E29F1C7150FF0086CE99 /* TripOptionSlice.swift in Sources */,
-				51F6E29B1C714F7A0086CE99 /* TripOption.swift in Sources */,
-				51F6E2991C714E120086CE99 /* TripsData.swift in Sources */,
-				51E934001C8B96B200F0AADF /* TripOptionPricingTax.swift in Sources */,
 				51E933EE1C8B320400F0AADF /* NSDateFormatter+Extension.swift in Sources */,
-				5194C6F41C869E5300826455 /* TripRequestPassengers.swift in Sources */,
+				51B6230F1CDE9D8F004CE5B6 /* TripHeaderView.swift in Sources */,
 				512DD9EF1C6AE147001194F9 /* AppDelegate.swift in Sources */,
+				51B623121CDE9DBA004CE5B6 /* ButtonCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,7 +459,7 @@
 		};
 		512DD9FE1C6AE147001194F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FFE6F51DD1008529AF835FB9 /* Pods-Flights.debug.xcconfig */;
+			baseConfigurationReference = CF8E9B47B76ABD42EE623C4D /* Pods-Flights.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Flights/Info.plist;
@@ -559,7 +471,7 @@
 		};
 		512DD9FF1C6AE147001194F9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 375163D6F6A50DBA08327C7F /* Pods-Flights.release.xcconfig */;
+			baseConfigurationReference = D55F26C51B8CE7C361419454 /* Pods-Flights.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Flights/Info.plist;

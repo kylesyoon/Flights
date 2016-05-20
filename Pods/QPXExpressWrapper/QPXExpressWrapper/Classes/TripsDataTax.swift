@@ -8,10 +8,11 @@
 
 import Foundation
 
-struct TripsDataTax {
-    let kind: String?
-    let code: String?
-    let name: String?
+public struct TripsDataTax {
+    
+    public let kind: String?
+    public let code: String?
+    public let name: String?
     
     init(kind: String, code: String, name: String) {
         self.kind = kind
@@ -30,11 +31,12 @@ struct TripsDataTax {
         
         return nil
     }
+    
 }
 
 extension TripsDataTax: Equatable {}
 
-func ==(lhs: TripsDataTax, rhs: TripsDataTax) -> Bool {
+public func ==(lhs: TripsDataTax, rhs: TripsDataTax) -> Bool {
     return lhs.kind == rhs.kind &&
         lhs.code == rhs.code &&
         lhs.name == rhs.name

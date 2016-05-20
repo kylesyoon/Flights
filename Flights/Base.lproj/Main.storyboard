@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="75K-5L-QcX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="75K-5L-QcX">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Flytster-->
+        <!--Flights-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="SearchViewController" id="BYZ-38-t0r" customClass="SearchViewController" customModule="Flights" customModuleProvider="target" sceneMemberID="viewController">
@@ -101,34 +101,27 @@
                                 <rect key="frame" x="282" y="281" width="37" height="37"/>
                                 <color key="color" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SQK-rM-iz9">
-                                <rect key="frame" x="0.0" y="550" width="600" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="aSb-wd-ipz"/>
-                                </constraints>
-                                <state key="normal" title="Search"/>
-                                <connections>
-                                    <action selector="didTapSearch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="B4U-Nh-RN0"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="fLK-ko-gDF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="1Oz-1g-e6l"/>
                             <constraint firstItem="nzc-FD-UjX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2yr-Qk-IRq"/>
-                            <constraint firstItem="SQK-rM-iz9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Ook-UG-9gU"/>
-                            <constraint firstAttribute="trailing" secondItem="SQK-rM-iz9" secondAttribute="trailing" id="PeJ-yM-GTY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fLK-ko-gDF" secondAttribute="trailing" id="W2C-yb-5Pq"/>
                             <constraint firstItem="fLK-ko-gDF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="h0P-WS-0ok"/>
                             <constraint firstItem="nzc-FD-UjX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="jgx-au-ZO5"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="SQK-rM-iz9" secondAttribute="bottom" id="koA-FG-kpR"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="Sn6-0v-ISv" appends="YES" id="nJK-n0-17w"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Flytster" id="lS7-hh-xTM"/>
+                    <navigationItem key="navigationItem" title="Flights" id="lS7-hh-xTM">
+                        <barButtonItem key="rightBarButtonItem" title="Search" id="CcR-vW-Ldv">
+                            <connections>
+                                <action selector="didTapSearch:" destination="BYZ-38-t0r" id="0n9-IC-N34"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="nzc-FD-UjX" id="zQf-WF-pZr"/>
                         <outlet property="adultCountTextField" destination="iHs-Gb-6a5" id="7FQ-cs-XOo"/>
@@ -247,6 +240,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ja7-u8-ufn"/>
+        <segue reference="x2o-cD-cnp"/>
     </inferredMetricsTieBreakers>
 </document>

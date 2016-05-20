@@ -8,13 +8,14 @@
 
 import Foundation
 
-struct TripOptionPricingTax {
-    let kind: String
-    let identifier: String
-    let chargeType: String
-    let code: String
-    let country: String
-    let salePrice: String
+public struct TripOptionPricingTax {
+    
+    public let kind: String
+    public let identifier: String
+    public let chargeType: String
+    public let code: String
+    public let country: String
+    public let salePrice: String
     
     init(kind: String, 
         identifier: String, 
@@ -47,11 +48,12 @@ struct TripOptionPricingTax {
         
         return nil
     }
+    
 }
 
 extension TripOptionPricingTax: Equatable {}
 
-func ==(lhs: TripOptionPricingTax, rhs: TripOptionPricingTax) -> Bool {
+public func ==(lhs: TripOptionPricingTax, rhs: TripOptionPricingTax) -> Bool {
     return lhs.kind == rhs.kind &&
         lhs.identifier == rhs.identifier &&
         lhs.chargeType == rhs.chargeType &&

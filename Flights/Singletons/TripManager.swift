@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import QPXExpressWrapper
 
 class TripManager {
     

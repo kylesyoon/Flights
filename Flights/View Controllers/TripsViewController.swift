@@ -9,6 +9,7 @@
 // TODO: Implement logic to grab departures, save returns until user taps a departure
 
 import UIKit
+import QPXExpressWrapper
 
 enum TripSelectionStatus {
     case selectedNone
@@ -16,13 +17,14 @@ enum TripSelectionStatus {
     case selectedReturn
 }
 
-class TripsViewController: UIViewController {
+internal class TripsViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
     var searchResults: SearchResults?
     var selectedTripOption: TripOption?
     var tripsDataSource: TripsDataSource?
     var isRoundTrip: Bool = true
+    var visibleHeaderViews: NSMapTable?
     let flightDetailSegueIdentifier =  "flightDetailSegue"
     
     override func viewDidLoad() {
@@ -37,13 +39,6 @@ class TripsViewController: UIViewController {
         if let searchResults = self.searchResults {
             self.tripsDataSource = TripsDataSource(searchResults: searchResults)
             self.tableView.reloadData()
-        }
-    }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == flightDetailSegueIdentifier {
-            let tripDetailVC = segue.destinationViewController as! TripDetailViewController
-            tripDetailVC.tripOption = self.selectedTripOption
         }
     }
     
@@ -70,7 +65,7 @@ extension TripsViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier(TripCell.cellIdentifier, forIndexPath: indexPath) as? TripCell {
             if let tripsDataSource = self.tripsDataSource {
-                cell.configure(tripsDataSource.tripCellDataForIndexPath(indexPath))
+                cell.configure(with: tripsDataSource.tripCellDataForIndexPath(indexPath))
             }
             
             return cell
@@ -82,17 +77,14 @@ extension TripsViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if self.tableView.numberOfSections == 2 {
             if let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier(TripHeaderView.cellIdentifier) as? TripHeaderView {
-                headerView.delegate = self
                 switch section {
                 case 1:
                     if let tripsDataSource = self.tripsDataSource {
                         switch tripsDataSource.tripSelectionStatus {
                         case .selectedDeparture:
                             headerView.sectionTitleLabel.text = LocalizedStrings.chooseYourReturnFlight
-                            headerView.type = .selectedNone
                         case .selectedReturn:
                             headerView.sectionTitleLabel.text = LocalizedStrings.selectedReturnFlight
-                            headerView.type = .selectedReturn
                         default:
                             return nil
                         }
@@ -103,7 +95,7 @@ extension TripsViewController: UITableViewDataSource {
                     fallthrough
                 default:
                     headerView.sectionTitleLabel.text = LocalizedStrings.selectedDepartureFlight
-                    headerView.type = .selectedDeparture
+                    
                     return headerView
                 }
             }
@@ -154,12 +146,4 @@ extension TripsViewController: UITableViewDelegate {
         }
     }
 
-}
-
-extension TripsViewController: TripHeaderViewDelegate {
-    
-    func headerViewDidTapClear(headerView: TripHeaderView) {
-        // TODO: Make data source handle deselecting based on the header type
-    }
-    
 }

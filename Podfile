@@ -4,6 +4,6 @@ use_frameworks!
 target 'Flights' do
 
 pod 'Alamofire'
+pod 'QPXExpressWrapper'
 
 end
-

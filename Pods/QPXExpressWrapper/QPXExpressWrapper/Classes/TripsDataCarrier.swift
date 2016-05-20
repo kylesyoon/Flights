@@ -8,10 +8,11 @@
 
 import Foundation
 
-struct TripsDataCarrier {
-    let kind: String
-    let code: String
-    let name: String
+public struct TripsDataCarrier {
+    
+    public let kind: String
+    public let code: String
+    public let name: String
     
     init(kind: String,
         code: String,
@@ -32,11 +33,12 @@ struct TripsDataCarrier {
         
         return nil
     }
+    
 }
 
 extension TripsDataCarrier: Equatable {}
 
-func ==(lhs: TripsDataCarrier, rhs: TripsDataCarrier) -> Bool {
+public func ==(lhs: TripsDataCarrier, rhs: TripsDataCarrier) -> Bool {
     return lhs.kind == rhs.kind &&
         lhs.code == rhs.code &&
         lhs.name == rhs.name

@@ -8,18 +8,19 @@
 
 import Foundation
 
-struct TripOptionPricing {
-    let kind: String
-    let fare: [TripOptionPricingFare]
-    let segmentPricing: [TripOptionPricingSegment]
-    let baseFareTotal: String
-    let saleFareTotal: String
-    let saleTotal: String
-    let passengers: TripRequestPassengers
-    let tax: [TripOptionPricingTax]
-    let fareCalculation: String
-    let latestTicketingTime: NSDate
-    let ptc: String
+public struct TripOptionPricing {
+    
+    public let kind: String
+    public let fare: [TripOptionPricingFare]
+    public let segmentPricing: [TripOptionPricingSegment]
+    public let baseFareTotal: String
+    public let saleFareTotal: String
+    public let saleTotal: String
+    public let passengers: TripRequestPassengers
+    public let tax: [TripOptionPricingTax]
+    public let fareCalculation: String
+    public let latestTicketingTime: NSDate
+    public let ptc: String
     
     init(kind: String,
         fare: [TripOptionPricingFare],
@@ -44,9 +45,7 @@ struct TripOptionPricing {
             self.latestTicketingTime = latestTicketingTime
             self.ptc = ptc
     }
-}
-
-extension TripOptionPricing {
+    
     static func decode(jsonDict: [String: AnyObject]) -> TripOptionPricing? {
         if let kind = jsonDict["kind"] as? String,
             fare = jsonDict["fare"] as? [[String: AnyObject]],
@@ -59,50 +58,51 @@ extension TripOptionPricing {
             fareCalculation = jsonDict["fareCalculation"] as? String,
             latestTicketingTime = jsonDict["latestTicketingTime"] as? String,
             ptc = jsonDict["ptc"] as? String {
-                var decodedFares = [TripOptionPricingFare]()
-                for jsonFare in fare {
-                    if let decodedFare = TripOptionPricingFare.decode(jsonFare) {
-                        decodedFares.append(decodedFare)
-                    }
+            var decodedFares = [TripOptionPricingFare]()
+            for jsonFare in fare {
+                if let decodedFare = TripOptionPricingFare.decode(jsonFare) {
+                    decodedFares.append(decodedFare)
                 }
-                var decodedSegments = [TripOptionPricingSegment]()
-                for jsonSegment in segmentPricing {
-                    if let decodedSegment = TripOptionPricingSegment.decode(jsonSegment) {
-                        decodedSegments.append(decodedSegment)
-                    }
+            }
+            var decodedSegments = [TripOptionPricingSegment]()
+            for jsonSegment in segmentPricing {
+                if let decodedSegment = TripOptionPricingSegment.decode(jsonSegment) {
+                    decodedSegments.append(decodedSegment)
                 }
-                var decodedTaxes = [TripOptionPricingTax]()
-                for jsonTax in tax {
-                    if let decodedTax = TripOptionPricingTax.decode(jsonTax) {
-                        decodedTaxes.append(decodedTax)
-                    }
+            }
+            var decodedTaxes = [TripOptionPricingTax]()
+            for jsonTax in tax {
+                if let decodedTax = TripOptionPricingTax.decode(jsonTax) {
+                    decodedTaxes.append(decodedTax)
                 }
-                
-                if let formattedLatestTicketingTime = NSDateFormatter.decode(latestTicketingTime),
-                    decodedPassengers = TripRequestPassengers.decode(passengers) {
-                    return TripOptionPricing(kind: kind,
-                        fare: decodedFares,
-                        segmentPricing: decodedSegments,
-                        baseFareTotal: baseFareTotal,
-                        saleFareTotal: saleFareTotal,
-                        saleTotal: saleTotal,
-                        passengers: decodedPassengers,
-                        tax: decodedTaxes,
-                        fareCalculation: fareCalculation,
-                        latestTicketingTime: formattedLatestTicketingTime,
-                        ptc: ptc)
-                }
-                
-                return nil
+            }
+            let dateFormatter = NSDateFormatter()
+            if let formattedLatestTicketingTime = dateFormatter.decodedDate(for: latestTicketingTime),
+                decodedPassengers = TripRequestPassengers.decode(passengers) {
+                return TripOptionPricing(kind: kind,
+                                         fare: decodedFares,
+                                         segmentPricing: decodedSegments,
+                                         baseFareTotal: baseFareTotal,
+                                         saleFareTotal: saleFareTotal,
+                                         saleTotal: saleTotal,
+                                         passengers: decodedPassengers,
+                                         tax: decodedTaxes,
+                                         fareCalculation: fareCalculation,
+                                         latestTicketingTime: formattedLatestTicketingTime,
+                                         ptc: ptc)
+            }
+            
+            return nil
         }
         
         return nil
     }
+
 }
 
 extension TripOptionPricing: Equatable {}
 
-func ==(lhs: TripOptionPricing, rhs: TripOptionPricing) -> Bool {
+public func ==(lhs: TripOptionPricing, rhs: TripOptionPricing) -> Bool {
     return lhs.kind == rhs.kind &&
         lhs.fare == rhs.fare && 
         lhs.segmentPricing == rhs.segmentPricing &&

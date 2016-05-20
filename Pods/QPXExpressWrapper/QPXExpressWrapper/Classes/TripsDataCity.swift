@@ -1,5 +1,5 @@
 //
-//  TripsDataAircraft.swift
+//  TripsDataCity.swift
 //  Flights
 //
 //  Created by Kyle Yoon on 3/5/16.
@@ -8,10 +8,11 @@
 
 import Foundation
 
-struct TripsDataAircraft {
-    let kind: String?
-    let code: String?
-    let name: String?
+public struct TripsDataCity {
+    
+    public let kind: String?
+    public let code: String?
+    public let name: String?
     
     init(kind: String, code: String, name: String) {
         self.kind = kind
@@ -19,22 +20,23 @@ struct TripsDataAircraft {
         self.name = name
     }
     
-    static func decode(jsonDict: [String: AnyObject]) -> TripsDataAircraft? {
+    static func decode(jsonDict: [String: AnyObject]) -> TripsDataCity? {
         if let kind = jsonDict["kind"] as? String,
             code = jsonDict["code"] as? String,
             name = jsonDict["name"] as? String {
-                return TripsDataAircraft(kind: kind,
+                return TripsDataCity(kind: kind,
                     code: code,
                     name: name)
         }
         
         return nil
     }
+    
 }
 
-extension TripsDataAircraft: Equatable {}
+extension TripsDataCity: Equatable {}
 
-func ==(lhs: TripsDataAircraft, rhs: TripsDataAircraft) -> Bool {
+public func ==(lhs: TripsDataCity, rhs: TripsDataCity) -> Bool {
     return lhs.kind == rhs.kind &&
         lhs.code == rhs.code &&
         lhs.name == rhs.name

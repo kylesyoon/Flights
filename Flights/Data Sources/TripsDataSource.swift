@@ -8,6 +8,7 @@
 
 //TODO: Implement datasource that gets results holding both departure and return.
 import Foundation
+import QPXExpressWrapper
 
 typealias TripCellData = (tripOption: TripOption, airlineNames: [String], sliceIndex: Int)
 
@@ -46,15 +47,15 @@ class TripsDataSource {
         self.tripCellDataToDisplay = self.uniqueTripCellDataForDeparture()
     }
     
-    func tripCellDataForIndexPath(indexPath: NSIndexPath) -> TripCellData {
+    internal func tripCellDataForIndexPath(indexPath: NSIndexPath) -> TripCellData {
         return self.tripCellDataToDisplay[indexPath.section][indexPath.row]
     }
 
-    func numberOfRowsForSection(section: Int) -> Int {
+    internal func numberOfRowsForSection(section: Int) -> Int {
         return tripCellDataToDisplay[section].count
     }
     
-    func numberOfSections() -> Int {
+    internal func numberOfSections() -> Int {
         return tripCellDataToDisplay.count
     }
     
@@ -63,7 +64,7 @@ class TripsDataSource {
      
      - parameter departureIndexPath: The departure slice index path
      */
-    func configureReturnFlights(for departureIndexPath: NSIndexPath) {
+    internal func configureReturnFlights(for departureIndexPath: NSIndexPath) {
         let selectedTripCellData = self.tripCellDataToDisplay[departureIndexPath.section][departureIndexPath.row]
         let sameDepartureTripOptions = self.searchResults.trips.tripOptions.filter { $0.slice[0] == selectedTripCellData.tripOption.slice[0] }
         let departureTripCellData = sameDepartureTripOptions.map { TripCellData($0, self.fullCarrierNamesTripOption($0), self.currentSliceIndex) }
@@ -71,11 +72,11 @@ class TripsDataSource {
     }
     
     /**
-     Configured the data source to displat the selected complete trip option. ONLY use with round trips.
+     Configured the data source to display the selected complete trip option. ONLY use with round trips.
      
      - parameter returnIndexPath: The selected return slice index path.
      */
-    func configureCompletedRoundTrip(for returnIndexPath: NSIndexPath) {
+    internal func configureCompletedRoundTrip(for returnIndexPath: NSIndexPath) {
         let selectedTripCellData = self.tripCellDataToDisplay[returnIndexPath.section][returnIndexPath.row]
         self.tripCellDataToDisplay = [self.tripCellDataToDisplay[0], [selectedTripCellData]]
     }

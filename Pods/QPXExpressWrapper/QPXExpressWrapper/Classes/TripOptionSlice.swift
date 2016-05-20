@@ -8,10 +8,11 @@
 
 import Foundation
 
-struct TripOptionSlice {
-    let kind: String
-    let duration: Int
-    let segment: [TripOptionSliceSegment]
+public struct TripOptionSlice {
+    
+    public let kind: String
+    public let duration: Int
+    public let segment: [TripOptionSliceSegment]
     
     init(kind: String,
         duration: Int,
@@ -20,32 +21,31 @@ struct TripOptionSlice {
             self.duration = duration
             self.segment = segment
     }
-}
-
-extension TripOptionSlice {
+    
     static func decode(jsonDict: [String: AnyObject]) -> TripOptionSlice? {
         if let kind = jsonDict["kind"] as? String,
             duration = jsonDict["duration"] as? Int,
             segment = jsonDict["segment"] as? [[String : AnyObject]] {
-                var decodedSegments = [TripOptionSliceSegment]()
-                for aSegment in segment {
-                    if let decodedSegment = TripOptionSliceSegment.decode(aSegment) {
-                        decodedSegments.append(decodedSegment)
-                    }
+            var decodedSegments = [TripOptionSliceSegment]()
+            for aSegment in segment {
+                if let decodedSegment = TripOptionSliceSegment.decode(aSegment) {
+                    decodedSegments.append(decodedSegment)
                 }
-                
-                return TripOptionSlice(kind: kind,
-                    duration: duration,
-                    segment: decodedSegments)
+            }
+            
+            return TripOptionSlice(kind: kind,
+                                   duration: duration,
+                                   segment: decodedSegments)
         }
         
         return nil
     }
+    
 }
 
 extension TripOptionSlice: Equatable {}
 
-func ==(lhs: TripOptionSlice, rhs: TripOptionSlice) -> Bool {
+public func ==(lhs: TripOptionSlice, rhs: TripOptionSlice) -> Bool {
     return lhs.kind == rhs.kind &&
         lhs.duration == rhs.duration &&
         lhs.segment == rhs.segment

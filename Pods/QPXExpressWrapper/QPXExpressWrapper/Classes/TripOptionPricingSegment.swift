@@ -8,10 +8,11 @@
 
 import Foundation
 
-struct TripOptionPricingSegment {
-    let kind: String
-    let fareID: String
-    let segmentID: String
+public struct TripOptionPricingSegment {
+    
+    public let kind: String
+    public let fareID: String
+    public let segmentID: String
     
     init(kind: String, fareID: String, segmentID: String) {
         self.kind = kind
@@ -30,11 +31,12 @@ struct TripOptionPricingSegment {
         
         return nil
     }
+    
 }
 
 extension TripOptionPricingSegment: Equatable {}
 
-func ==(lhs: TripOptionPricingSegment, rhs: TripOptionPricingSegment) -> Bool {
+public func ==(lhs: TripOptionPricingSegment, rhs: TripOptionPricingSegment) -> Bool {
     return lhs.kind == rhs.kind &&
         lhs.fareID == rhs.fareID &&
         lhs.segmentID == rhs.segmentID
