@@ -1,15 +1,24 @@
 PODS:
-  - Alamofire (3.4.0)
+  - Alamofire (3.4.1)
   - QPXExpressWrapper (0.1.0)
 
 DEPENDENCIES:
   - Alamofire
-  - QPXExpressWrapper
+  - QPXExpressWrapper (from `git@github.com:yoonapps/QPXExpressWrapper.git`)
+
+EXTERNAL SOURCES:
+  QPXExpressWrapper:
+    :git: git@github.com:yoonapps/QPXExpressWrapper.git
+
+CHECKOUT OPTIONS:
+  QPXExpressWrapper:
+    :commit: 1d1d50d749b893a43575f2ea9338b318567cc443
+    :git: git@github.com:yoonapps/QPXExpressWrapper.git
 
 SPEC CHECKSUMS:
-  Alamofire: c19a627cefd6a95f840401c49ab1f124e07f54ee
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
   QPXExpressWrapper: 2c29b136365d76d6c7e0357766a3e00716e5a5e3
 
-PODFILE CHECKSUM: 765d8d6bba111ece61f073939ebcd7ea399a0819
+PODFILE CHECKSUM: 1580c9216b3da746ea1e063086d62dc684be9c6d
 
-COCOAPODS: 1.0.0
+COCOAPODS: 1.0.1

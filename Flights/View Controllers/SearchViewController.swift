@@ -51,7 +51,6 @@ class SearchViewController: UIViewController {
         if segue.identifier == SearchViewController.flightsViewControllerSegueIdentifier {
             if let tripsVC = segue.destinationViewController as? TripsViewController {
                 tripsVC.searchResults = self.searchResults
-                tripsVC.isRoundTrip = self.roundTripSegmentedControl.selectedSegmentIndex == 0 // For round trip
             }
         } else if segue.identifier == DateViewController.departureDateSegueIdentifier ||
             segue.identifier == DateViewController.returnDateSegueIdentifier {

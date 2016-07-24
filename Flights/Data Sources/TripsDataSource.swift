@@ -26,6 +26,7 @@ class TripsDataSource {
     }
     private(set) var currentSliceIndex = 0
     // Lets the datasource know that the second slice (return) for trip options need to be displayed
+    // TODO: Fix this shit so it's not garbage
     var tripSelectionStatus = TripSelectionStatus.selectedNone {
         didSet {
             // 0 index slice for departure, 1 index slice for return
@@ -44,7 +45,7 @@ class TripsDataSource {
     
     init(searchResults: SearchResults) {
         self.searchResults = searchResults
-        self.tripCellDataToDisplay = self.uniqueTripCellDataForDeparture()
+        self.tripCellDataToDisplay = self.findUniqueDepartures()
     }
     
     internal func tripCellDataForIndexPath(indexPath: NSIndexPath) -> TripCellData {
@@ -86,9 +87,11 @@ class TripsDataSource {
 
      - returns: A sectioned array of TripCellData
      */
-    private func uniqueTripCellDataForDeparture() -> [[TripCellData]] {
+    private func findUniqueDepartures() -> [[TripCellData]] {
         var tripCellDataToDisplay = [TripCellData]()
         for tripOption in self.searchResults.trips.tripOptions {
+            // If the display array has a an option with the same departure slice,
+            // Don't add it again
             let duplicateTripOptions = tripCellDataToDisplay.filter { $0.tripOption.slice[0] == tripOption.slice[0] }
             if duplicateTripOptions.isEmpty {
                 let carrierNames = self.fullCarrierNamesTripOption(tripOption)

@@ -23,7 +23,6 @@ internal class TripsViewController: UIViewController {
     var searchResults: SearchResults?
     var selectedTripOption: TripOption?
     var tripsDataSource: TripsDataSource?
-    var isRoundTrip: Bool = true
     var visibleHeaderViews: NSMapTable?
     let flightDetailSegueIdentifier =  "flightDetailSegue"
     
@@ -128,21 +127,27 @@ extension TripsViewController: UITableViewDelegate {
     // TODO: Add selection behavior for one way
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if let dataSource = self.tripsDataSource {
-            switch dataSource.tripSelectionStatus {
-            case .selectedNone:
-                dataSource.tripSelectionStatus = .selectedDeparture
-                dataSource.configureReturnFlights(for: indexPath)
-            case .selectedDeparture:
-                dataSource.tripSelectionStatus = .selectedReturn
-                dataSource.configureCompletedRoundTrip(for: indexPath)
-            default:
-                return
+        if let dataSource = self.tripsDataSource, searchResults = self.searchResults {
+            if searchResults.isRoundTrip {
+                switch dataSource.tripSelectionStatus {
+                case .selectedNone:
+                    dataSource.tripSelectionStatus = .selectedDeparture
+                    dataSource.configureReturnFlights(for: indexPath)
+                case .selectedDeparture:
+                    dataSource.tripSelectionStatus = .selectedReturn
+                    dataSource.configureCompletedRoundTrip(for: indexPath)
+                default:
+                    return
+                }
+                self.tableView.reloadData()
+                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0),
+                                                      atScrollPosition: .Top,
+                                                      animated: true)
             }
-            self.tableView.reloadData()
-            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0),
-                                                  atScrollPosition: .Top,
-                                                  animated: true)
+            else {
+                // TODO: Do stuff for data source to handle one way
+            }
+
         }
     }
 
