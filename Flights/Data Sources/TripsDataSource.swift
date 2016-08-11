@@ -10,15 +10,13 @@
 import Foundation
 import QPXExpressWrapper
 
-typealias TripCellData = (tripOption: TripOption, airlineNames: [String], sliceIndex: Int)
-
 class TripsDataSource {
     
     private let departureSliceIndex = 0;
     private let returnSliceIndex = 1;
     
     var searchResults: SearchResults
-    var tripCellDataToDisplay: [[TripCellData]] = []
+    var tripCellDataToDisplay: [[SourceFlight]] = []
     var isSelectingDepature = true {
         didSet {
             currentSliceIndex = isSelectingDepature ? 0 : 1
@@ -48,7 +46,7 @@ class TripsDataSource {
         self.tripCellDataToDisplay = self.findUniqueDepartures()
     }
     
-    internal func tripCellDataForIndexPath(indexPath: NSIndexPath) -> TripCellData {
+    internal func tripCellDataForIndexPath(indexPath: NSIndexPath) -> SourceFlight {
         return self.tripCellDataToDisplay[indexPath.section][indexPath.row]
     }
 
@@ -68,7 +66,7 @@ class TripsDataSource {
     internal func configureReturnFlights(for departureIndexPath: NSIndexPath) {
         let selectedTripCellData = self.tripCellDataToDisplay[departureIndexPath.section][departureIndexPath.row]
         let sameDepartureTripOptions = self.searchResults.trips.tripOptions.filter { $0.slice[0] == selectedTripCellData.tripOption.slice[0] }
-        let departureTripCellData = sameDepartureTripOptions.map { TripCellData($0, self.fullCarrierNamesTripOption($0), self.currentSliceIndex) }
+        let departureTripCellData = sameDepartureTripOptions.map { SourceFlight(tripOption: $0, airlineNames: self.fullCarrierNamesTripOption($0), sliceIndex: self.currentSliceIndex) }
         self.tripCellDataToDisplay = [[selectedTripCellData], departureTripCellData]
     }
     
@@ -82,20 +80,25 @@ class TripsDataSource {
         self.tripCellDataToDisplay = [self.tripCellDataToDisplay[0], [selectedTripCellData]]
     }
     
+    internal func configureCompletedOneWayTrip(for departureIndexPath: NSIndexPath) {
+        let selectedTripCellData = self.tripCellDataToDisplay[departureIndexPath.section][departureIndexPath.row]
+        self.tripCellDataToDisplay = [[selectedTripCellData]]
+    }
+    
     /**
      Filters trip options with redundant slice[0]s (departure slice) and makes a sectioned array of TripCellData tuples.
 
      - returns: A sectioned array of TripCellData
      */
-    private func findUniqueDepartures() -> [[TripCellData]] {
-        var tripCellDataToDisplay = [TripCellData]()
+    private func findUniqueDepartures() -> [[SourceFlight]] {
+        var tripCellDataToDisplay = [SourceFlight]()
         for tripOption in self.searchResults.trips.tripOptions {
             // If the display array has a an option with the same departure slice,
             // Don't add it again
             let duplicateTripOptions = tripCellDataToDisplay.filter { $0.tripOption.slice[0] == tripOption.slice[0] }
             if duplicateTripOptions.isEmpty {
                 let carrierNames = self.fullCarrierNamesTripOption(tripOption)
-                tripCellDataToDisplay.append(TripCellData(tripOption, carrierNames, 0))
+                tripCellDataToDisplay.append(SourceFlight(tripOption: tripOption, airlineNames: carrierNames, sliceIndex: 0))
             }
         }
         

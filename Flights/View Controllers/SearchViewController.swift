@@ -192,6 +192,7 @@ class SearchViewController: UIViewController {
     }
 
     @IBAction func didTapSearch(sender: AnyObject) {
+        // TODO: For roundtrip if there's no return trip date, then don't allow
         if let tripRequest = self.tripRequestFromUserInput() {
             self.tripRequest = tripRequest
             self.activityIndicator.startAnimating()

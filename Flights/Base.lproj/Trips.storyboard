@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rvn-mb-VWw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Rvn-mb-VWw">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -18,25 +18,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9n5-dk-Fnq">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="OSQ-T0-5jT">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="Rvn-mb-VWw" id="EDu-JL-rnz"/>
-                                    <outlet property="delegate" destination="Rvn-mb-VWw" id="Ugo-xG-xtC"/>
-                                </connections>
-                            </tableView>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9n5-dk-Fnq">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="540"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Rvn-mb-VWw" id="EDu-JL-rnz"/>
+                                            <outlet property="delegate" destination="Rvn-mb-VWw" id="Ugo-xG-xtC"/>
+                                        </connections>
+                                    </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="taw-vI-r3f">
+                                        <rect key="frame" x="0.0" y="540" width="600" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="gSr-Hf-5bp"/>
+                                        </constraints>
+                                        <state key="normal" title="Complete"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="9n5-dk-Fnq" firstAttribute="top" secondItem="au0-UN-gU3" secondAttribute="topMargin" id="CPF-aL-sVe"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="9n5-dk-Fnq" secondAttribute="trailing" constant="-20" id="Ixb-nd-2bf"/>
-                            <constraint firstItem="b6n-T4-m2g" firstAttribute="top" secondItem="9n5-dk-Fnq" secondAttribute="bottom" id="o97-5E-zWS"/>
-                            <constraint firstItem="9n5-dk-Fnq" firstAttribute="leading" secondItem="au0-UN-gU3" secondAttribute="leadingMargin" constant="-20" id="qLK-l2-QZH"/>
+                            <constraint firstItem="b6n-T4-m2g" firstAttribute="top" secondItem="OSQ-T0-5jT" secondAttribute="bottom" id="5e4-Gz-gph"/>
+                            <constraint firstItem="OSQ-T0-5jT" firstAttribute="leading" secondItem="au0-UN-gU3" secondAttribute="leadingMargin" constant="-20" id="G76-gB-tJX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OSQ-T0-5jT" secondAttribute="trailing" constant="-20" id="PgM-Rc-DEO"/>
+                            <constraint firstItem="OSQ-T0-5jT" firstAttribute="top" secondItem="au0-UN-gU3" secondAttribute="topMargin" id="xpu-pq-KHl"/>
                         </constraints>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="completeButton" destination="taw-vI-r3f" id="Bjt-O3-D0d"/>
+                        <outlet property="stackView" destination="OSQ-T0-5jT" id="Rr3-wI-Jl8"/>
                         <outlet property="tableView" destination="9n5-dk-Fnq" id="8E6-Mr-DcN"/>
                     </connections>
                 </viewController>

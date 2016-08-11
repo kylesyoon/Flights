@@ -26,6 +26,7 @@
 		51E933EE1C8B320400F0AADF /* NSDateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E933ED1C8B320400F0AADF /* NSDateFormatter+Extension.swift */; };
 		51E934081C923C7500F0AADF /* TypeaheadDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E934071C923C7500F0AADF /* TypeaheadDataSource.swift */; };
 		51E9340A1C924DE300F0AADF /* airports.json in Resources */ = {isa = PBXBuildFile; fileRef = 51E934091C924DE300F0AADF /* airports.json */; };
+		51F2006B1D516DF700C6C9D4 /* SourceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F2006A1D516DF700C6C9D4 /* SourceType.swift */; };
 		51F6E2931C711F000086CE99 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F6E2921C711F000086CE99 /* Keys.swift */; };
 		5AA339081C6E52CB00DB4E76 /* HTTPSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA339071C6E52CB00DB4E76 /* HTTPSessionManager.swift */; };
 		5AA3390B1C6E534D00DB4E76 /* APIUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA3390A1C6E534D00DB4E76 /* APIUtility.swift */; };
@@ -58,6 +59,7 @@
 		51E933ED1C8B320400F0AADF /* NSDateFormatter+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSDateFormatter+Extension.swift"; path = "Extensions/NSDateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		51E934071C923C7500F0AADF /* TypeaheadDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TypeaheadDataSource.swift; path = "Data Sources/TypeaheadDataSource.swift"; sourceTree = "<group>"; };
 		51E934091C924DE300F0AADF /* airports.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = airports.json; sourceTree = "<group>"; };
+		51F2006A1D516DF700C6C9D4 /* SourceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SourceType.swift; sourceTree = "<group>"; };
 		51F6E2921C711F000086CE99 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Keys.swift; path = Flights/Keys.swift; sourceTree = "<group>"; };
 		5AA339071C6E52CB00DB4E76 /* HTTPSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPSessionManager.swift; sourceTree = "<group>"; };
 		5AA3390A1C6E534D00DB4E76 /* APIUtility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIUtility.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			children = (
 				5194C6E61C853F1400826455 /* TripsDataSource.swift */,
 				51E934071C923C7500F0AADF /* TypeaheadDataSource.swift */,
+				51F2006A1D516DF700C6C9D4 /* SourceType.swift */,
 			);
 			name = "Data Sources";
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				51E934081C923C7500F0AADF /* TypeaheadDataSource.swift in Sources */,
 				5AA3390B1C6E534D00DB4E76 /* APIUtility.swift in Sources */,
 				51E933EE1C8B320400F0AADF /* NSDateFormatter+Extension.swift in Sources */,
+				51F2006B1D516DF700C6C9D4 /* SourceType.swift in Sources */,
 				51B6230F1CDE9D8F004CE5B6 /* TripHeaderView.swift in Sources */,
 				512DD9EF1C6AE147001194F9 /* AppDelegate.swift in Sources */,
 				51B623121CDE9DBA004CE5B6 /* ButtonCell.swift in Sources */,

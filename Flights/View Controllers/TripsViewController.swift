@@ -20,6 +20,9 @@ enum TripSelectionStatus {
 internal class TripsViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var completeButton: UIButton!
+    @IBOutlet var stackView: UIStackView!
+    
     var searchResults: SearchResults?
     var selectedTripOption: TripOption?
     var tripsDataSource: TripsDataSource?
@@ -39,6 +42,7 @@ internal class TripsViewController: UIViewController {
             self.tripsDataSource = TripsDataSource(searchResults: searchResults)
             self.tableView.reloadData()
         }
+        self.completeButton.hidden = true
     }
     
 }
@@ -136,16 +140,23 @@ extension TripsViewController: UITableViewDelegate {
                 case .selectedDeparture:
                     dataSource.tripSelectionStatus = .selectedReturn
                     dataSource.configureCompletedRoundTrip(for: indexPath)
+                    self.completeButton.hidden = false
                 default:
                     return
-                }
-                self.tableView.reloadData()
+                }                
+                
+                self.tableView.insertSections(NSIndexSet(index: 1) , withRowAnimation: .Automatic)
+                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Top)
                 self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0),
                                                       atScrollPosition: .Top,
                                                       animated: true)
             }
             else {
-                // TODO: Do stuff for data source to handle one way
+                // One way
+                dataSource.configureCompletedOneWayTrip(for: indexPath)
+                self.tableView.reloadData()
+                
+                self.completeButton.hidden = false
             }
 
         }

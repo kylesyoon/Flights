@@ -1,0 +1,10 @@
+framework module QPXExpressWrapper {
+  umbrella header "QPXExpressWrapper-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module QPXExpressWrapper.__Swift {
+    exclude header "QPXExpressWrapper-Swift.h"
+}

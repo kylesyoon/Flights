@@ -20,15 +20,25 @@ class TripCell: UITableViewCell {
     @IBOutlet var detailsLabel: UILabel!
     @IBOutlet var layoverLabel: UILabel!
     
-    internal func configure(with tripCellData: TripCellData) {
-        let tripOption = tripCellData.tripOption
-        let sliceIndex = tripCellData.sliceIndex
+    internal func configure(with sourceFlight: SourceFlight) {
+        let tripOption = sourceFlight.tripOption
+        let sliceIndex = sourceFlight.sliceIndex
         self.configurePrice(tripOption)
         let slice = tripOption.slice[sliceIndex]
         self.configureFlightTimes(slice)
-        self.configureCarrierNames(tripCellData.airlineNames)
+        self.configureCarrierNames(sourceFlight.airlineNames)
         self.configureLayovers(slice)
     }
+    
+//    internal func configure(with tripCellData: TripCellData) {
+//        let tripOption = tripCellData.tripOption
+//        let sliceIndex = tripCellData.sliceIndex
+//        self.configurePrice(tripOption)
+//        let slice = tripOption.slice[sliceIndex]
+//        self.configureFlightTimes(slice)
+//        self.configureCarrierNames(tripCellData.airlineNames)
+//        self.configureLayovers(slice)
+//    }
 
     private func configurePrice(tripOption: TripOption) {
         //TODO: Get the right price

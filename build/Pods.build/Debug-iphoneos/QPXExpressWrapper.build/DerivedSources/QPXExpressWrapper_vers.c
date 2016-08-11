@@ -1,0 +1,1 @@
+ const unsigned char QPXExpressWrapperVersionString[] __attribute__ ((used)) = "@(#)PROGRAM:QPXExpressWrapper  PROJECT:Pods-1" "\n"; const double QPXExpressWrapperVersionNumber __attribute__ ((used)) = (double)1.;
