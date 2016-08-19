@@ -6,8 +6,6 @@
 //  Copyright © 2016 Kyle Yoon. All rights reserved.
 //
 
-// TODO: Implement logic to grab departures, save returns until user taps a departure
-
 import UIKit
 import QPXExpressWrapper
 
@@ -18,6 +16,8 @@ enum TripSelectionStatus {
 }
 
 internal class TripsViewController: UIViewController {
+    private static let summarySegueIdentifier = "summaryViewControllerSegue"
+    private static let headerHeight: CGFloat = 50.0
 
     @IBOutlet var tableView: UITableView!
     @IBOutlet var completeButton: UIButton!
@@ -27,7 +27,6 @@ internal class TripsViewController: UIViewController {
     var selectedTripOption: TripOption?
     var tripsDataSource: TripsDataSource?
     var visibleHeaderViews: NSMapTable?
-    let flightDetailSegueIdentifier =  "flightDetailSegue"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +44,9 @@ internal class TripsViewController: UIViewController {
         self.completeButton.hidden = true
     }
     
+    @IBAction func didTapComplete(sender: AnyObject) {
+        self.performSegueWithIdentifier(TripsViewController.summarySegueIdentifier, sender: nil)
+    }
 }
 
 extension TripsViewController: UITableViewDataSource {
@@ -117,7 +119,7 @@ extension TripsViewController: UITableViewDataSource {
             case 0:
                 fallthrough
             default:
-                return 100.0
+                return TripsViewController.headerHeight
             }
         }
         
@@ -127,8 +129,6 @@ extension TripsViewController: UITableViewDataSource {
 }
 
 extension TripsViewController: UITableViewDelegate {
-    // TODO: Add selection behavior when trip option is all selected
-    // TODO: Add selection behavior for one way
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if let dataSource = self.tripsDataSource, searchResults = self.searchResults {
@@ -137,29 +137,23 @@ extension TripsViewController: UITableViewDelegate {
                 case .selectedNone:
                     dataSource.tripSelectionStatus = .selectedDeparture
                     dataSource.configureReturnFlights(for: indexPath)
+                    self.tableView.reloadData()
+                    self.tableView.reloadSections(NSIndexSet(indexesInRange: NSMakeRange(0, 2)), withRowAnimation: .Automatic)
                 case .selectedDeparture:
                     dataSource.tripSelectionStatus = .selectedReturn
                     dataSource.configureCompletedRoundTrip(for: indexPath)
                     self.completeButton.hidden = false
+                    self.tableView.reloadData()
+                    self.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
                 default:
                     return
-                }                
-                
-                self.tableView.insertSections(NSIndexSet(index: 1) , withRowAnimation: .Automatic)
-                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Top)
-                self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0),
-                                                      atScrollPosition: .Top,
-                                                      animated: true)
+                }
             }
             else {
                 // One way
-                dataSource.configureCompletedOneWayTrip(for: indexPath)
-                self.tableView.reloadData()
-                
-                self.completeButton.hidden = false
+                self.performSegueWithIdentifier(TripsViewController.summarySegueIdentifier, sender: nil)
             }
 
         }
     }
-
 }

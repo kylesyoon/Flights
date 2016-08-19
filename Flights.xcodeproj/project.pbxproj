@@ -10,7 +10,6 @@
 		512123BC1CCEF70B00E9046C /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512123BB1CCEF70B00E9046C /* LocalizedStrings.swift */; };
 		512DD9EF1C6AE147001194F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512DD9EE1C6AE147001194F9 /* AppDelegate.swift */; };
 		512DD9F41C6AE147001194F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 512DD9F21C6AE147001194F9 /* Main.storyboard */; };
-		512DD9F61C6AE147001194F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 512DD9F51C6AE147001194F9 /* Assets.xcassets */; };
 		512DD9F91C6AE147001194F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 512DD9F71C6AE147001194F9 /* LaunchScreen.storyboard */; };
 		5194C6DC1C80052300826455 /* Trips.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5194C6DA1C80052300826455 /* Trips.storyboard */; };
 		5194C6E21C8530DE00826455 /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194C6E11C8530DE00826455 /* DateViewController.swift */; };
@@ -18,6 +17,14 @@
 		5194C6E71C853F1400826455 /* TripsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194C6E61C853F1400826455 /* TripsDataSource.swift */; };
 		5194C6EA1C8541BE00826455 /* TripCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5194C6E91C8541BE00826455 /* TripCell.swift */; };
 		5194C6EF1C85420E00826455 /* TripCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5194C6EE1C85420E00826455 /* TripCell.xib */; };
+		51A3287D1D668F7900B8756E /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A3287C1D668F7900B8756E /* SummaryViewController.swift */; };
+		51A328841D6691D500B8756E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A328831D6691D500B8756E /* Colors.swift */; };
+		51A328891D66948F00B8756E /* Adam.otf in Resources */ = {isa = PBXBuildFile; fileRef = 51A328861D66948F00B8756E /* Adam.otf */; };
+		51A3288A1D66948F00B8756E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51A328871D66948F00B8756E /* Assets.xcassets */; };
+		51A3288B1D66948F00B8756E /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 51A328881D66948F00B8756E /* SourceSansPro-Regular.ttf */; };
+		51A3288E1D66996700B8756E /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51A3288C1D66996700B8756E /* SignIn.storyboard */; };
+		51A328901D6699DC00B8756E /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A3288F1D6699DC00B8756E /* SignInViewController.swift */; };
+		51A328921D6699F800B8756E /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A328911D6699F800B8756E /* RegistrationViewController.swift */; };
 		51B6230F1CDE9D8F004CE5B6 /* TripHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B6230D1CDE9D8F004CE5B6 /* TripHeaderView.swift */; };
 		51B623101CDE9D8F004CE5B6 /* TripHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51B6230E1CDE9D8F004CE5B6 /* TripHeaderView.xib */; };
 		51B623121CDE9DBA004CE5B6 /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B623111CDE9DBA004CE5B6 /* ButtonCell.swift */; };
@@ -42,7 +49,6 @@
 		512DD9EB1C6AE147001194F9 /* Flights.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flights.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		512DD9EE1C6AE147001194F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		512DD9F31C6AE147001194F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		512DD9F51C6AE147001194F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		512DD9F81C6AE147001194F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		512DD9FA1C6AE147001194F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5194C6DB1C80052300826455 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Flights/Base.lproj/Trips.storyboard; sourceTree = "<group>"; };
@@ -51,6 +57,14 @@
 		5194C6E61C853F1400826455 /* TripsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripsDataSource.swift; path = "Data Sources/TripsDataSource.swift"; sourceTree = "<group>"; };
 		5194C6E91C8541BE00826455 /* TripCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripCell.swift; path = Views/TripCell.swift; sourceTree = "<group>"; };
 		5194C6EE1C85420E00826455 /* TripCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TripCell.xib; path = Views/TripCell.xib; sourceTree = "<group>"; };
+		51A3287C1D668F7900B8756E /* SummaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
+		51A328831D6691D500B8756E /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Colors.swift; path = Extensions/Colors.swift; sourceTree = "<group>"; };
+		51A328861D66948F00B8756E /* Adam.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Adam.otf; sourceTree = "<group>"; };
+		51A328871D66948F00B8756E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		51A328881D66948F00B8756E /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
+		51A3288D1D66996700B8756E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SignIn.storyboard; sourceTree = "<group>"; };
+		51A3288F1D6699DC00B8756E /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		51A328911D6699F800B8756E /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		51B6230D1CDE9D8F004CE5B6 /* TripHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TripHeaderView.swift; path = Views/TripHeaderView.swift; sourceTree = "<group>"; };
 		51B6230E1CDE9D8F004CE5B6 /* TripHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TripHeaderView.xib; path = Views/TripHeaderView.xib; sourceTree = "<group>"; };
 		51B623111CDE9DBA004CE5B6 /* ButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ButtonCell.swift; path = Views/ButtonCell.swift; sourceTree = "<group>"; };
@@ -121,11 +135,12 @@
 				5AA339091C6E52D000DB4E76 /* Network */,
 				5194C6E51C85396100826455 /* Singletons */,
 				512DD9F21C6AE147001194F9 /* Main.storyboard */,
+				51A3288C1D66996700B8756E /* SignIn.storyboard */,
 				5194C6DA1C80052300826455 /* Trips.storyboard */,
 				512DD9F71C6AE147001194F9 /* LaunchScreen.storyboard */,
 				51E934091C924DE300F0AADF /* airports.json */,
 				512DD9FA1C6AE147001194F9 /* Info.plist */,
-				512DD9F51C6AE147001194F9 /* Assets.xcassets */,
+				51A3287E1D66911200B8756E /* Resources */,
 			);
 			path = Flights;
 			sourceTree = "<group>";
@@ -161,11 +176,22 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		51A3287E1D66911200B8756E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				51A328861D66948F00B8756E /* Adam.otf */,
+				51A328871D66948F00B8756E /* Assets.xcassets */,
+				51A328881D66948F00B8756E /* SourceSansPro-Regular.ttf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		51E933EC1C8B31DF00F0AADF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				51E933ED1C8B320400F0AADF /* NSDateFormatter+Extension.swift */,
 				51E933EA1C8B31D900F0AADF /* NSDate+Extension.swift */,
+				51A328831D6691D500B8756E /* Colors.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -186,6 +212,9 @@
 				5AA339161C6E7A9C00DB4E76 /* SearchViewController.swift */,
 				5AA339151C6E7A9C00DB4E76 /* TripsViewController.swift */,
 				5194C6E11C8530DE00826455 /* DateViewController.swift */,
+				51A3287C1D668F7900B8756E /* SummaryViewController.swift */,
+				51A3288F1D6699DC00B8756E /* SignInViewController.swift */,
+				51A328911D6699F800B8756E /* RegistrationViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -206,12 +235,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 512DD9FD1C6AE147001194F9 /* Build configuration list for PBXNativeTarget "Flights" */;
 			buildPhases = (
+				808448118C2A313C29EAE09A /* 📦 Check Pods Manifest.lock */,
 				DF4B1BE217DEE5377312D2CA /* [CP] Check Pods Manifest.lock */,
 				512DD9E71C6AE147001194F9 /* Sources */,
 				512DD9E81C6AE147001194F9 /* Frameworks */,
 				512DD9E91C6AE147001194F9 /* Resources */,
 				A1FD11CFBF2B1648C732F11F /* [CP] Embed Pods Frameworks */,
 				93741637BE37FC1D193B3A7B /* [CP] Copy Pods Resources */,
+				A82FA67D4AE386ED223ADE70 /* 📦 Embed Pods Frameworks */,
+				CD5D622C6DB870B65A770524 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -262,11 +294,14 @@
 			files = (
 				51E9340A1C924DE300F0AADF /* airports.json in Resources */,
 				5194C6EF1C85420E00826455 /* TripCell.xib in Resources */,
+				51A328891D66948F00B8756E /* Adam.otf in Resources */,
 				51B623101CDE9D8F004CE5B6 /* TripHeaderView.xib in Resources */,
 				51B623141CDE9DC6004CE5B6 /* ButtonCell.xib in Resources */,
+				51A3288B1D66948F00B8756E /* SourceSansPro-Regular.ttf in Resources */,
+				51A3288E1D66996700B8756E /* SignIn.storyboard in Resources */,
 				512DD9F91C6AE147001194F9 /* LaunchScreen.storyboard in Resources */,
 				5194C6DC1C80052300826455 /* Trips.storyboard in Resources */,
-				512DD9F61C6AE147001194F9 /* Assets.xcassets in Resources */,
+				51A3288A1D66948F00B8756E /* Assets.xcassets in Resources */,
 				512DD9F41C6AE147001194F9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,6 +309,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		808448118C2A313C29EAE09A /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		93741637BE37FC1D193B3A7B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -304,6 +354,36 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Flights/Pods-Flights-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		A82FA67D4AE386ED223ADE70 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Flights/Pods-Flights-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CD5D622C6DB870B65A770524 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Flights/Pods-Flights-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		DF4B1BE217DEE5377312D2CA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -327,7 +407,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5194C6E21C8530DE00826455 /* DateViewController.swift in Sources */,
+				51A328841D6691D500B8756E /* Colors.swift in Sources */,
 				5AA339171C6E7A9C00DB4E76 /* TripsViewController.swift in Sources */,
+				51A3287D1D668F7900B8756E /* SummaryViewController.swift in Sources */,
 				5AA339131C6E5C7100DB4E76 /* TripAPI.swift in Sources */,
 				5194C6EA1C8541BE00826455 /* TripCell.swift in Sources */,
 				5AA339181C6E7A9C00DB4E76 /* SearchViewController.swift in Sources */,
@@ -338,6 +420,8 @@
 				5AA339081C6E52CB00DB4E76 /* HTTPSessionManager.swift in Sources */,
 				51F6E2931C711F000086CE99 /* Keys.swift in Sources */,
 				51E934081C923C7500F0AADF /* TypeaheadDataSource.swift in Sources */,
+				51A328921D6699F800B8756E /* RegistrationViewController.swift in Sources */,
+				51A328901D6699DC00B8756E /* SignInViewController.swift in Sources */,
 				5AA3390B1C6E534D00DB4E76 /* APIUtility.swift in Sources */,
 				51E933EE1C8B320400F0AADF /* NSDateFormatter+Extension.swift in Sources */,
 				51F2006B1D516DF700C6C9D4 /* SourceType.swift in Sources */,
@@ -373,6 +457,14 @@
 			);
 			name = Trips.storyboard;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		51A3288C1D66996700B8756E /* SignIn.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				51A3288D1D66996700B8756E /* Base */,
+			);
+			name = SignIn.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

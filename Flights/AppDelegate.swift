@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        self.applyColors()
         return true
     }
 
@@ -41,6 +41,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    private func applyColors() {
+        UINavigationBar.appearance().tintColor = UIColor.flyt_primaryGreen()
+        UISegmentedControl.appearance().tintColor = UIColor.flyt_primaryGreen()
+        UIButton.appearance().tintColor = UIColor.flyt_primaryGreen()
+        UIActivityIndicatorView.appearance().color = UIColor.flyt_primaryGreen()
+    }
 }
 
